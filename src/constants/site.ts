@@ -207,7 +207,7 @@ export const LEADERSHIP_MESSAGES: readonly LeadershipMessage[] = [
   },
   {
     id: "director",
-    name: "Col Boney Yeamin",
+    name: "Col Md Boney Yiamin",
     role: "Director, PowerFit",
     badge: "Director",
     image: "/images/leadership/col-boney-yeamin.jpg",
