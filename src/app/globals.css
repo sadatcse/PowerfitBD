@@ -1,26 +1,186 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   Powerfit Design System — tokens extracted from Figma "Power FIT"
+   (file DdZREoFbIrM69WCFqXeh47). Do not hardcode raw hex in components;
+   always consume these tokens.
+   ========================================================================== */
+
+@theme {
+  /* ---- Surfaces -------------------------------------------------------- */
+  --color-ink-950: #060d1a; /* deep section band */
+  --color-ink-900: #0a192f; /* base canvas + card fill */
+  --color-ink-850: #0b1c35; /* subtle raised panel */
+  --color-ink-800: #112240; /* elevated card */
+  --color-line: #233554; /* hairline borders */
+  --color-line-soft: #1b2a45;
+
+  /* ---- Brand ----------------------------------------------------------- */
+  --color-brand: #ad0224; /* primary crimson */
+  --color-brand-hover: #8a011d;
+  --color-brand-bright: #ff2d2d; /* high-energy accent */
+  --color-gold: #f5c518; /* membership / highlight accent */
+  --color-gold-hover: #d9ad0f;
+
+  /* ---- Text ------------------------------------------------------------ */
+  --color-mist: #e5e2e1; /* primary light text */
+  --color-sand: #d0c6ab; /* body copy */
+  --color-muted: #8b97ad; /* secondary / meta */
+
+  /* ---- Status ---------------------------------------------------------- */
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-danger: #dc2626;
+  --color-info: #2563eb;
+
+  /* ---- Typography ------------------------------------------------------ */
+  --font-display: var(--font-bebas), "Bebas Neue", ui-sans-serif, sans-serif;
+  --font-sans: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui,
+    sans-serif;
+
+  /* Display scale (Bebas Neue) — size / line-height / tracking from Figma */
+  --text-display-1: 5rem; /* 80px */
+  --text-display-1--line-height: 5rem; /* 80px */
+  --text-display-1--letter-spacing: 0.02em; /* 1.6px */
+  --text-display-2: 3rem; /* 48px */
+  --text-display-2--line-height: 3.25rem; /* 52px */
+  --text-display-2--letter-spacing: 0.03em; /* 1.44px */
+  --text-display-3: 2rem; /* 32px */
+  --text-display-3--line-height: 2.25rem; /* 36px */
+  --text-display-3--letter-spacing: 0.03em; /* 0.96px */
+  --text-display-4: 1.5rem; /* 24px */
+  --text-display-4--line-height: 1.75rem; /* 28px */
+  --text-display-4--letter-spacing: 0.03em;
+
+  /* Body scale (Montserrat) */
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body-lg--line-height: 1.75rem; /* 28px */
+  --text-body: 1rem; /* 16px */
+  --text-body--line-height: 1.5rem; /* 24px */
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-sm--line-height: 1.25rem; /* 20px */
+  --text-body-xs: 0.75rem; /* 12px */
+  --text-body-xs--line-height: 1rem; /* 16px */
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --spacing-section: 7.5rem; /* 120px vertical rhythm */
+  --spacing-gutter: 2.5rem; /* 40px page gutter */
+  --container-shell: 75rem; /* 1200px outer container */
+  --container-content: 65rem; /* 1040px content column */
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ==========================================================================
+   Base
+   ========================================================================== */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background-color: var(--color-ink-900);
+    color: var(--color-sand);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-bright);
+    outline-offset: 2px;
+  }
+
+  /* Dark-native form controls */
+  input,
+  textarea,
+  select {
+    font-family: var(--font-sans);
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-mist);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-ink-950) inset;
+    caret-color: var(--color-mist);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--text-body-sm);
+  line-height: var(--text-body-sm--line-height);
+  letter-spacing: 0.3em; /* 4.2px @ 14px */
+  text-transform: uppercase;
+}
+
+/* Thin custom scrollbar used by scroll regions and the dashboard shell */
+@utility scrollbar-slim {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-line);
+    border-radius: 9999px;
+  }
+}
+
+/* Hides the scrollbar while keeping the region scrollable (filter rails) */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility text-balance-pretty {
+  text-wrap: pretty;
 }

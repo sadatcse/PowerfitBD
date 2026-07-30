@@ -1,0 +1,22 @@
+import { type ReactNode } from "react";
+
+interface PageHeaderProps {
+  title: string;
+  description?: string;
+  action?: ReactNode;
+}
+
+/** Consistent title row for every dashboard page. */
+export function PageHeader({ title, description, action }: PageHeaderProps) {
+  return (
+    <div className="flex flex-col gap-4 pb-8 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h1 className="text-display-3 text-white">{title}</h1>
+        {description ? (
+          <p className="mt-1 text-body-sm text-muted">{description}</p>
+        ) : null}
+      </div>
+      {action ? <div className="shrink-0">{action}</div> : null}
+    </div>
+  );
+}
