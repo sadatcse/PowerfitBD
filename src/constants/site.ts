@@ -179,3 +179,45 @@ export const SERVICES_LIST = [
   { title: "Personal Training", category: "1-on-1 Coaching" },
   { title: "Customized Workout Plans", category: "Tailored" },
 ] as const;
+
+export interface LeadershipMessage {
+  id: string;
+  name: string;
+  role: string;
+  badge: string;
+  image: string;
+  quote: string;
+  paragraphs: readonly string[];
+}
+
+export const LEADERSHIP_MESSAGES: readonly LeadershipMessage[] = [
+  {
+    id: "managing-director",
+    name: "Abul Kalam Azad",
+    role: "Managing Director, PowerFit",
+    badge: "Managing Director",
+    image: "/images/leadership/abul-kalam-azad.jpg",
+    quote: "Our vision is to create a fitness destination where people can improve their health, build confidence, and achieve lasting results.",
+    paragraphs: [
+      "Welcome to PowerFit.",
+      "Our vision is to create a fitness destination where people can improve their health, build confidence, and achieve lasting results. At PowerFit, we are committed to providing a premium fitness experience through world-class equipment, professional trainers, modern facilities, and outstanding member support.",
+      "We believe that every fitness journey is unique. Whether your goal is weight loss, muscle building, strength training, or overall wellness, our team is dedicated to helping you reach your full potential in a safe and motivating environment.",
+      "Thank you for choosing PowerFit as your fitness partner. We are honored to be part of your journey and remain committed to helping you become the best version of yourself.",
+    ],
+  },
+  {
+    id: "director",
+    name: "Col Boney Yeamin",
+    role: "Director, PowerFit",
+    badge: "Director",
+    image: "/images/leadership/col-boney-yeamin.jpg",
+    quote: "Train with discipline. Stay committed. Achieve your goals.",
+    paragraphs: [
+      "Welcome to PowerFit.",
+      "As someone who has served in the Army, I believe that discipline, hard work, and consistency are the keys to success. These values are also the foundation of PowerFit.",
+      "Our mission is to help every member become stronger, healthier, and more confident. Every workout is a step toward a better future. Stay focused, never give up, and keep moving forward.",
+      "Our team is here to support and guide you every day. Together, we can build not only a stronger body but also a stronger mind.",
+      "Train with discipline. Stay committed. Achieve your goals.",
+    ],
+  },
+];

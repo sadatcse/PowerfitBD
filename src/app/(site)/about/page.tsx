@@ -4,14 +4,15 @@ import { Button } from "@/components/common/Button";
 import { SectionTitle } from "@/components/title/SectionTitle";
 import { StorySection } from "@/components/sections/about/StorySection";
 import { ValuesSection } from "@/components/sections/about/ValuesSection";
+import { LeadershipSection } from "@/components/sections/about/LeadershipSection";
 import { StatsBand } from "@/components/sections/about/StatsBand";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About Us",
-  description: `${SITE.legalName} — Dhaka's premier athletics performance facility. Learn our story, our values, and what makes Powerfit different.`,
+  title: "About Us & Leadership Messages",
+  description: `${SITE.legalName} — Read executive leadership messages from Managing Director Abul Kalam Azad and Director Col Boney Yeamin.`,
   path: "/about",
 });
 
@@ -30,6 +31,7 @@ export default function AboutPage() {
       </section>
 
       <StorySection />
+      <LeadershipSection />
       <ValuesSection />
       <StatsBand />
 
