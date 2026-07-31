@@ -76,7 +76,7 @@ export interface Branch {
 export const BRANCHES: readonly Branch[] = [
   {
     id: "adabor",
-    name: "Multi Gym Premium Power Fit — Adabor",
+    name: "Power Fit — Adabor",
     address:
       "5th & 6th Floors, 48/49 Jonota Cooperative Housing Society, Ring Road, Shyamoli, Adabor, Dhaka-1207.",
     phone: "+880 1313-197426",
@@ -85,7 +85,7 @@ export const BRANCHES: readonly Branch[] = [
   },
   {
     id: "shia-masjid",
-    name: "Multi Gym Premium — Shiya Masjid",
+    name: "Shiya Masjid Branch",
     address:
       "24/1, 24/2 (3rd & 4th Floor), Ring Road, Shiya Masjid Mor, Mohammadpur, Dhaka-1207.",
     phone: "+880 1313-197435",
@@ -94,7 +94,7 @@ export const BRANCHES: readonly Branch[] = [
   },
   {
     id: "lalmatia",
-    name: "Multi Gym Premium — Lalmatia",
+    name: "Lalmatia Branch",
     address:
       "Lalmatia Shopping Center (2nd Floor), Lalmatia New Colony, Beside Fire Service & Civil Defence (Fire Brigade), Dhaka-1207.",
     phone: "+880 1313-197427",
@@ -207,7 +207,7 @@ export const LEADERSHIP_MESSAGES: readonly LeadershipMessage[] = [
   },
   {
     id: "director",
-    name: "Col Md Boney Yiamin",
+    name: "Col Md Boney Yiamin (Retd)",
     role: "Director, PowerFit",
     badge: "Director",
     image: "/images/leadership/col-boney-yeamin.jpg",

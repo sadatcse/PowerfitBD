@@ -15,6 +15,8 @@ export interface TeamMember {
   designation: string;
   description: string;
   image: string;
+  phone?: string;
+  bloodGroup?: string;
   socials: TeamSocials;
   displayOrder: number;
   status: Status;
@@ -28,6 +30,8 @@ export interface TeamMemberInput {
   designation: string;
   description: string;
   image: string;
+  phone?: string;
+  bloodGroup?: string;
   socials?: TeamSocials;
   displayOrder?: number;
   status?: Status;

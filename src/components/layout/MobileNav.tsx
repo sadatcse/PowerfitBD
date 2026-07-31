@@ -80,7 +80,7 @@ export function MobileNav({ open, onClose, pathname }: MobileNavProps) {
                       onClick={onClose}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "block border-l-2 px-4 py-3 font-sans text-body-sm font-bold tracking-[0.1em] uppercase transition-colors",
+                        "block border-l-2 px-4 py-3 font-nav text-body-sm font-bold tracking-[0.1em] uppercase transition-colors",
                         active
                           ? "border-brand text-brand"
                           : "border-transparent text-mist hover:border-line hover:text-white",

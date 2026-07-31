@@ -61,7 +61,7 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
 
   return (
     <StaggerGroup className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      {members.map((member) => (
+      {members.map((member, index) => (
         <StaggerItem key={member._id}>
           <article className="group flex h-full flex-col border border-line bg-ink-950 transition-colors duration-300 hover:border-brand">
             <div className="relative aspect-4/5 w-full overflow-hidden">
@@ -69,6 +69,7 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
                 src={member.image}
                 alt={member.name}
                 fill
+                priority={index < 6}
                 sizes={IMAGE_SIZES.third}
                 className="object-cover transition-transform duration-700 ease-(--ease-out-expo) group-hover:scale-105"
               />
@@ -81,10 +82,11 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
             <div className="flex flex-1 flex-col gap-2 p-6">
               <h3 className="text-display-4 text-white">{member.name}</h3>
               <p className="eyebrow text-brand">{member.designation}</p>
+
               <p className="mt-1 text-body-sm text-sand">
                 {member.description}
               </p>
-              <div className="mt-auto">
+              <div className="mt-auto pt-2">
                 <SocialRow socials={member.socials} />
               </div>
             </div>

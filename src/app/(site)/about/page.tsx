@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/common/Button";
-import { SectionTitle } from "@/components/title/SectionTitle";
+import { PageHeaderBanner } from "@/components/common/PageHeaderBanner";
 import { StorySection } from "@/components/sections/about/StorySection";
 import { ValuesSection } from "@/components/sections/about/ValuesSection";
 import { LeadershipSection } from "@/components/sections/about/LeadershipSection";
@@ -19,16 +19,13 @@ export const metadata: Metadata = buildMetadata({
 export default function AboutPage() {
   return (
     <>
-      <section className="border-b border-line bg-ink-950 py-16 md:py-24">
-        <Container>
-          <SectionTitle
-            as="h1"
-            eyebrow="Who We Are"
-            title="Engineering Greatness Since Day One"
-            description={SITE.description}
-          />
-        </Container>
-      </section>
+      <PageHeaderBanner
+        imageSrc="/images/headers/about.jpg"
+        imageAlt="Powerfit facility floor and community"
+        eyebrow="Who We Are"
+        title="Engineering Greatness Since Day One"
+        description={SITE.description}
+      />
 
       <StorySection />
       <LeadershipSection />

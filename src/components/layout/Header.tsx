@@ -62,7 +62,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                       href={link.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "inline-block border-b-2 pb-1.5 font-sans text-body-sm font-bold tracking-[0.02em] uppercase transition-colors duration-200",
+                        "inline-block border-b-2 pb-1.5 font-nav text-body-sm font-bold tracking-[0.02em] uppercase transition-colors duration-200",
                         active
                           ? "border-brand text-brand"
                           : "border-transparent text-mist hover:text-brand",

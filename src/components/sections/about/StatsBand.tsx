@@ -6,7 +6,7 @@ import {
 
 const STATS = [
   { value: "3", label: "Premier Locations" },
-  { value: "24/7", label: "Full Access" },
+  { value: "300+", label: "Fitness Equipment" },
   { value: "15+", label: "Expert Coaches" },
   { value: "5K+", label: "Members Transformed" },
 ] as const;

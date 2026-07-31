@@ -11,7 +11,7 @@ const BENEFITS = [
     Icon: LuAward,
     title: "Modern Equipment & Technogym Racks",
     description:
-      "The largest gym facility in Mohammadpur/Lalmatia, equipped with pro-grade gear.",
+      "The largest gym facility in Adabor, Mohammadpur & Lalmatia, equipped with pro-grade gear.",
   },
   {
     Icon: LuUserCheck,
@@ -61,9 +61,6 @@ export function DifferenceSection() {
 
             {/* Corporate discount flag, bottom-right of the photo in Figma. */}
             <div className="absolute right-0 bottom-0 flex flex-col items-center bg-brand px-8 py-5 text-center lg:-right-6">
-              <span className="font-display text-[2.5rem] leading-none text-white">
-                15%
-              </span>
               <span className="mt-1 text-body-xs font-bold tracking-[0.15em] text-white uppercase">
                 Corporate Discount
               </span>

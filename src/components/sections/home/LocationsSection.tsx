@@ -20,10 +20,10 @@ export function LocationsSection() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="flex flex-col gap-4">
             <h2 className="text-[2rem] leading-[1.1] tracking-[0.03em] text-white sm:text-4xl lg:text-display-2">
-              Premier Locations
+              Our Locations
             </h2>
             <p className="max-w-xl text-body-lg text-sand">
-              Find your nearest Powerfit and join a community of high-performers.
+              Find your nearest Multigym Premium and join a community of high-performers.
             </p>
           </div>
 

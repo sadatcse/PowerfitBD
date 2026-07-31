@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Montserrat } from "next/font/google";
+import { Bebas_Neue, Montserrat, Oswald } from "next/font/google";
 import { AppProviders } from "@/providers/AppProviders";
 import { getCurrentUser } from "@/lib/auth/guard";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -21,6 +21,14 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-montserrat",
+  display: "swap",
+});
+
+/** Navbar-only typeface — condensed and athletic, distinct from body copy. */
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-oswald",
   display: "swap",
 });
 
@@ -58,7 +66,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebas.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${bebas.variable} ${montserrat.variable} ${oswald.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col bg-ink-900">

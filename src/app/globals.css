@@ -37,6 +37,7 @@
   --font-display: var(--font-bebas), "Bebas Neue", ui-sans-serif, sans-serif;
   --font-sans: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui,
     sans-serif;
+  --font-nav: var(--font-oswald), "Oswald", ui-sans-serif, sans-serif;
 
   /* Display scale (Bebas Neue) — size / line-height / tracking from Figma */
   --text-display-1: 5rem; /* 80px */

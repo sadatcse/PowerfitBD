@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
-import { Container } from "@/components/common/Container";
-import { SectionTitle } from "@/components/title/SectionTitle";
+import { PageHeaderBanner } from "@/components/common/PageHeaderBanner";
 import { PricingPlans } from "@/components/sections/pricing/PricingPlans";
 import { PricingFaq } from "@/components/sections/pricing/PricingFaq";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -15,18 +14,14 @@ export const metadata: Metadata = buildMetadata({
 export default function PricingPage() {
   return (
     <>
-      <section className="border-b border-line bg-ink-950 py-16 md:py-24">
-        <Container>
-          <SectionTitle
-            as="h1"
-            eyebrow="Membership Pricing"
-            title="All-Inclusive Premium Access"
-            description="One unified membership gives you complete access to Technogym-grade equipment, expert trainers, dedicated ladies floors, steam & sauna, and soundproof 4K TV environments."
-            align="center"
-            className="mx-auto"
-          />
-        </Container>
-      </section>
+      <PageHeaderBanner
+        imageSrc="/images/headers/pricing.jpg"
+        imageAlt="Members training in Multi Gym Premium Powerfit"
+        eyebrow="Membership Pricing"
+        title="All-Inclusive Premium Access"
+        description="One unified membership gives you complete access to Technogym-grade equipment, expert trainers, dedicated ladies floors, steam & sauna, and soundproof 4K TV environments."
+        align="center"
+      />
 
       <PricingPlans />
       <PricingFaq />
