@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Montserrat, Oswald } from "next/font/google";
+import Script from "next/script";
 import { AppProviders } from "@/providers/AppProviders";
 import { getCurrentUser } from "@/lib/auth/guard";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -69,6 +70,21 @@ export default async function RootLayout({
       className={`${bebas.variable} ${montserrat.variable} ${oswald.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TPJ3TM70E4"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-TPJ3TM70E4');
+          `}
+        </Script>
+      </head>
       <body className="flex min-h-full flex-col bg-ink-900">
         <AppProviders initialUser={user}>{children}</AppProviders>
       </body>
