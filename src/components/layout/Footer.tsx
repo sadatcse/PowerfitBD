@@ -40,7 +40,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* Brand */}
           <div className="flex flex-col gap-5 lg:col-span-1">
-            <Logo tone="gold" />
+            <Logo tone="white" />
             <p className="max-w-xs text-body-sm text-sand">
               The standard in high-performance fitness. We don&apos;t just train
               bodies; we engineer greatness across Dhaka&apos;s premier
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Quick links */}
           <nav aria-label="Quick links" className="flex flex-col gap-4">
-            <h2 className="text-body-xs font-bold tracking-[0.2em] text-gold uppercase">
+            <h2 className="text-body-xs font-bold tracking-[0.2em] text-brand-bright uppercase">
               Quick Links
             </h2>
             <ul className="flex flex-col gap-2.5">
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Legal */}
           <nav aria-label="Legal" className="flex flex-col gap-4">
-            <h2 className="text-body-xs font-bold tracking-[0.2em] text-gold uppercase">
+            <h2 className="text-body-xs font-bold tracking-[0.2em] text-brand-bright uppercase">
               Legal
             </h2>
             <ul className="flex flex-col gap-2.5">
@@ -103,7 +103,7 @@ export function Footer() {
 
           {/* Hours */}
           <div className="flex flex-col gap-4">
-            <h2 className="text-body-xs font-bold tracking-[0.2em] text-gold uppercase">
+            <h2 className="text-body-xs font-bold tracking-[0.2em] text-brand-bright uppercase">
               Operating Hours
             </h2>
             <dl className="flex flex-col gap-2.5">

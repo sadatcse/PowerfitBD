@@ -1,0 +1,315 @@
+export interface EquipmentItem {
+  id: string;
+  title: string;
+  model: string;
+  brand: string;
+  category: "cardio" | "functional" | "upper-body" | "lower-body" | "core";
+  categoryLabel: string;
+  type: "Plate Loaded" | "Pin Selectorized" | "Air Resistance" | "Free Motion";
+  description: string;
+  image: string;
+  features?: string[];
+}
+
+export const EQUIPMENT_LIST: readonly EquipmentItem[] = [
+
+  {
+    id: "g-r004-yg-fitness-air-rower",
+    title: "G-R004 Commercial Gym Equipment YG Fitness Air Rower",
+    model: "G-R004",
+    brand: "YG Fitness",
+    category: "cardio",
+    categoryLabel: "Cardio & Conditioning",
+    type: "Air Resistance",
+    description:
+      "The G-R004 YG Fitness Air Rower is a premium, professional-grade rowing machine engineered for both intensive commercial gym use and premium home fitness setups. Utilizing dynamic air resistance technology, the machine automatically scales resistance to match your rowing intensity—the harder you pull, the more resistance you generate. It features an ergonomic padded seat that glides smoothly over a durable monorail, adjustable non-slip foot plates, and a comprehensive digital LCD monitor to track essential workout metrics such as time, distance, strokes per minute, and calories burned. Built with a heavy-duty steel and aluminum frame, this compact and space-saving rower delivers an exceptional full-body, low-impact cardiovascular workout.",
+    image: "/images/equipment/82029.avif",
+    features: ["Dynamic Air Resistance", "Aluminum Monorail Track", "Stroke & Telemetry Monitor", "Low-Impact Full Body"],
+  },
+  {
+    id: "yr-fitness-4-station-multi-jungle-f2m01",
+    title: "YR Fitness 4 Station Multi Jungle F2M01 (6280)",
+    model: "F2M01 (6280)",
+    brand: "YR Fitness",
+    category: "functional",
+    categoryLabel: "Functional & Multi-Station",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness 4 Station Multi Jungle F2M01 is a space-saving, commercial-grade machine that allows up to four people to train simultaneously. Featuring smooth motion mechanics, heavy-duty construction, and multiple workout stations, it provides versatile, full-body training options ideal for busy gym facilities.",
+    image: "/images/equipment/9-station-multi-gym-6280b.avif",
+    features: ["4 Simultaneous Workstations", "Heavy Dual Weight Stacks", "Lat Pulldown & Cable Crossover", "Commercial Heavy Steel"],
+  },
+  {
+    id: "yr-fitness-ab-crunch-back-extension-c4d08",
+    title: "YR Fitness Ab Crunch/Back Extension C4D08",
+    model: "C4D08",
+    brand: "YR Fitness",
+    category: "core",
+    categoryLabel: "Core & Posture",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness Ab Crunch/Back Extension C4D08 is a compact two-in-one machine that targets both abdominal and lower back muscles. Built with strong materials and smooth movement, it is ideal for effective core training and balanced strength development in any gym or fitness space.",
+    image: "/images/equipment/82029.avif",
+    features: ["Dual-Function Core Selector", "Rotational Cam Movement", "Adjustable Roller Cushion", "Lumbar Support Ergonomics"],
+  },
+  {
+    id: "yr-fitness-c411-tricep-dip",
+    title: "YR Fitness C411 Tricep Dip",
+    model: "C411",
+    brand: "YR Fitness",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C411 Tricep Dip is designed to strengthen your triceps with comfort and control. Its rotating EZ handles offer multiple grip options for varied workouts, while the ergonomic design ensures smooth movement and a safe, effective training experience for all users.",
+    image: "/images/equipment/tricep-dip-c411.avif",
+    features: ["Rotating EZ Grip Handles", "Seated Stabilization Belt", "Isolated Tricep Cam", "Smooth Weight Stack"],
+  },
+  {
+    id: "yr-fitness-c416a-knee-on-assisted-chin-dip",
+    title: "YR Fitness C416A Knee-on Assisted Chin/Dip",
+    model: "C416A",
+    brand: "YR Fitness",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C416a Knee-on Assisted Chin/Dip is designed to support users in building upper body strength through assisted chin-ups and dips. With an optional knee pad for added support, it offers a safe, adjustable workout for users of all fitness levels.",
+    image: "/images/equipment/knee-on-assisted-chin-c416a.avif",
+    features: ["Counter-Balanced Knee Support", "Multi-Angle Pullup Grips", "Dip Bar Adjustments", "Progressive Weight Assistance"],
+  },
+  {
+    id: "yr-fitness-c420-multi-hip",
+    title: "YR Fitness C420 Multi Hip",
+    model: "C420",
+    brand: "YR Fitness",
+    category: "lower-body",
+    categoryLabel: "Lower Body & Legs",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C420 Multi Hip is a versatile machine designed to train various hip and leg muscles. With adjustable settings and a smooth bidirectional motion, it supports users of all sizes and fitness levels, making it ideal for lower body strength and mobility training.",
+    image: "/images/equipment/yr-fitness-c420-multi-hip.avif",
+    features: ["360° Rotating Lever Arm", "Height-Adjustable Platform", "Adductor & Abductor Isolation", "Glute & Hip Flexor Training"],
+  },
+  {
+    id: "yr-fitness-c432b-functional-trainer",
+    title: "YR Fitness C432B Functional Trainer",
+    model: "C432B",
+    brand: "YR Fitness",
+    category: "functional",
+    categoryLabel: "Functional & Multi-Station",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C432B Functional Trainer offers 60+ exercises in one machine with smooth adjustments and a wide range of motion. Its dual pulley design and 2:1 ratio provide versatile, performance-driven training for total body strength and conditioning.",
+    image: "/images/equipment/functional-trainer-c432b.avif",
+    features: ["60+ Exercise Variations", "2:1 Cable Resistance Ratio", "Independent Swivel Pulleys", "Integrated Chin-Up Bar"],
+  },
+  {
+    id: "yr-fitness-c460-adductor-and-abductor",
+    title: "YR Fitness C460 Adductor and Abductor",
+    model: "C460",
+    brand: "YR Fitness",
+    category: "lower-body",
+    categoryLabel: "Lower Body & Legs",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C460 Adductor and Abductor combines two key thigh exercises in one machine. With adjustable settings, large leg pads, and smooth operation, it offers a comfortable and efficient lower body workout for users of all fitness levels.",
+    image: "/images/equipment/c460.avif",
+    features: ["Dual Inner/Outer Thigh Selector", "Rotating Knee Cushions", "Quick Adjust Range-of-Motion", "Ergonomic Back Support"],
+  },
+  {
+    id: "yr-fitness-c4a05-converging-independent-chest-press",
+    title: "YR Fitness C4A05 Converging Independent Chest Press",
+    model: "C4A05",
+    brand: "YR Fitness",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C4A05 Converging Independent Chest Press supports balanced chest development with independently moving arms and a converging motion path. Its adjustable backrest ensures proper fit and posture, delivering a safe, joint-friendly workout for all users.",
+    image: "/images/equipment/c4a05.avif",
+    features: ["Independent Converging Movement", "Adjustable Seat & Backrest", "Dual Grip Positions", "Joint-Friendly Biomechanics"],
+  },
+  {
+    id: "yr-fitness-c4a10-converging-independent-biceps",
+    title: "YR Fitness C4A10 Converging Independent Biceps",
+    model: "C4A10",
+    brand: "YR Fitness",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C4A10 Converging Independent Biceps delivers smooth, controlled curls with independent arms, dual-grip handles, and adaptive elbow and arm support. Its ergonomic design ensures balanced, comfortable biceps training for users of all fitness levels.",
+    image: "/images/equipment/c4a10.avif",
+    features: ["Converging Arm Motion", "Adaptive Arm Cushioning", "Independent Unilateral Action", "Textured Ergonomic Grips"],
+  },
+  {
+    id: "yr-fitness-c4a11-diverging-tricep-extension",
+    title: "YR Fitness C4A11 Diverging Tricep Extension",
+    model: "C4A11",
+    brand: "YR Fitness",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C4A11 Diverging Tricep Extension features independent arms and a rotating elbow pad for smooth, joint-friendly movement. With adjustable support and durable design, it delivers precise and balanced tricep training for users of all levels.",
+    image: "/images/equipment/c4a11.avif",
+    features: ["Diverging Overhead Arc", "Self-Aligning Forearm Pads", "Isolated Tricep Load", "Precision Cam Pulley System"],
+  },
+  {
+    id: "yr-fitness-c4d04-biceps-triceps",
+    title: "YR Fitness C4D04 Biceps/Triceps",
+    model: "C4D04",
+    brand: "YR Fitness",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness Biceps/Triceps Machine C4D04 is a dual-function trainer designed to build upper arm strength by targeting both biceps and triceps. With durable steel construction, smooth motion, and comfortable padding, it is perfect for safe and effective arm workouts in any professional gym.",
+    image: "/images/equipment/c4d04.avif",
+    features: ["Dual-Purpose Arm Combos", "Adjustable Preacher Pad", "Quick Switch Resistance", "High-Density Foam Seating"],
+  },
+  {
+    id: "yr-fitness-c4d12-leg-extension-leg-curl",
+    title: "YR Fitness C4D12 Leg Extension/Leg Curl",
+    model: "C4D12",
+    brand: "YR Fitness",
+    category: "lower-body",
+    categoryLabel: "Lower Body & Legs",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness Leg Extension/Leg Curl C4D12 is a two-in-one machine that targets the front and back of the thighs. Built for comfort and strength, it offers smooth, safe movement for effective lower body workouts, ideal for professional gyms focused on complete leg training.",
+    image: "/images/equipment/c4d12.avif",
+    features: ["Seated Extension & Hamstring Curl", "Self-Adjusting Ankle Roller", "Thigh Holding Bar", "Full Quad & Hamstring Isolation"],
+  },
+  {
+    id: "yr-fitness-c409-pectoral-fly-rear-deltoid",
+    title: "YR Fitness C409 Pectoral Fly/Rear Deltoid",
+    model: "C409",
+    brand: "YR Fitness",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Pin Selectorized",
+    description:
+      "The YR Fitness C409 Pectoral Fly/Rear Deltoid is a versatile two-in-one machine that targets both chest and rear shoulder muscles. With rotating grips for wrist protection and smooth motion design, it ensures a safe, comfortable, and effective workout for strength and stability.",
+    image: "/images/equipment/c409.avif",
+    features: ["Dual Pec Fly & Rear Delt Dual Cam", "360° Swapping Arm Handles", "Multi-Position Seat Adjustment", "Upper Body Posture Isolation"],
+  },
+  {
+    id: "yr-fitness-82006-t-bar-row",
+    title: "YR Fitness 82006 T Bar Row",
+    model: "82006",
+    brand: "YR Fitness ISO",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82006 is a solid, plate-loaded T Bar Row built for efficient back training. Its compact yet robust design supports heavy lifting and full engagement of upper-body pulling muscles.",
+    image: "/images/equipment/82006.avif",
+    features: ["Plate-Loaded Heavy Back Row", "Multi-Grip Bar Position", "Padded Chest Support Cushion", "Diamond Plate Footing"],
+  },
+  {
+    id: "yr-fitness-82013-iso-lateral-decline-bench-press",
+    title: "YR Fitness 82013 ISO Lateral Decline Bench Press",
+    model: "82013",
+    brand: "YR Fitness ISO",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82013 ISO Lateral Decline Bench Press delivers smooth, isolated decline pressing to effectively target the lower chest. Its independent arms and adjustable resistance make it a valuable asset for building balanced upper body strength.",
+    image: "/images/equipment/82013.avif",
+    features: ["ISO-Lateral Decline Trajectory", "Independent Converging Press", "Heavy Weight Horn Storage", "Lower Chest Sculpting"],
+  },
+  {
+    id: "yr-fitness-82015-iso-lateral-horizontal-bench-press",
+    title: "YR Fitness 82015 ISO-Lateral Horizontal Bench Press",
+    model: "82015",
+    brand: "YR Fitness ISO",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82015 ISO-Lateral Horizontal Bench Press replicates the traditional bench press with the added benefits of independent arm movement and joint-friendly mechanics, supporting safe and effective chest training.",
+    image: "/images/equipment/82015.avif",
+    features: ["Unilateral Horizontal Trajectory", "Joint-Friendly Chest Movement", "Heavy Olympic Plate Holders", "Commercial Steel Frame"],
+  },
+  {
+    id: "yr-fitness-82018-plate-loaded-seated-calf",
+    title: "YR Fitness 82018 Plate Loaded Seated Calf",
+    model: "82018",
+    brand: "YR Fitness ISO",
+    category: "lower-body",
+    categoryLabel: "Lower Body & Legs",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82018 Plate Loaded Seated Calf delivers efficient and isolated calf training through a simple, stable, and durable seated platform. It is a must-have for completing any lower-body strength program.",
+    image: "/images/equipment/82018.avif",
+    features: ["Isolated Soleus Calf Training", "Quick-Release Safety Lever", "Angled Foot Platform", "Thick Thigh Support Pads"],
+  },
+  {
+    id: "yr-fitness-82020-plate-loaded-v-squat",
+    title: "YR Fitness 82020 Plate Loaded V Squat",
+    model: "82020",
+    brand: "YR Fitness ISO",
+    category: "lower-body",
+    categoryLabel: "Lower Body & Legs",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82020 Plate Loaded V Squat offers a safer and more ergonomic approach to heavy squats with plate-loaded flexibility and lower-body focus, making it a staple for effective leg training.",
+    image: "/images/equipment/82020.avif",
+    features: ["Natural V-Squat Motion Arc", "Reduces Lower Back Compression", "Heavy Weight Plate Capacities", "Over-Sized Non-Slip Foot Plate"],
+  },
+  {
+    id: "yr-fitness-82022-leg-press",
+    title: "YR Fitness 82022 Leg Press",
+    model: "82022",
+    brand: "YR Fitness ISO",
+    category: "lower-body",
+    categoryLabel: "Lower Body & Legs",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82022 Leg Press combines a biomechanically sound pressing path with heavy-duty construction, making it an essential piece for safe and effective leg training.",
+    image: "/images/equipment/82022.avif",
+    features: ["45° Incline Press Track", "Dual Safety Lockouts", "Massive Foot Plate Area", "High-Weight Capacity Horns"],
+  },
+  {
+    id: "yr-fitness-82037-lat-pull-down-circular",
+    title: "YR Fitness 82037 Lat Pull-Down Circular",
+    model: "82037",
+    brand: "YR Fitness ISO",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82037 Lat Pull-Down Circular offers a joint-friendly, circular lat pull-down movement with customizable resistance—ideal for building a strong, well-defined back with reduced strain.",
+    image: "/images/equipment/82037.avif",
+    features: ["Circular Converging Lat Arc", "Isolated Latissimus Dorsi Load", "Padded Thigh Lock Rollers", "Smooth Bearing Pivot"],
+  },
+  {
+    id: "yr-fitness-82038-middle-chest-flight-machine",
+    title: "YR Fitness 82038 Middle Chest Flight Machine",
+    model: "82038",
+    brand: "YR Fitness ISO",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82038 provides effective mid-chest isolation with smooth flye mechanics and adjustable resistance—ideal for sculpting a balanced and defined upper body.",
+    image: "/images/equipment/82038.avif",
+    features: ["Middle Chest Flye Trajectory", "Plate Loaded Progression", "Unilateral Arm Movement", "Ergonomic Back Support"],
+  },
+  {
+    id: "yr-fitness-82041-pull-back-machine",
+    title: "YR Fitness 82041 Pull Back Machine",
+    model: "82041",
+    brand: "YR Fitness ISO",
+    category: "upper-body",
+    categoryLabel: "Upper Body & Arms",
+    type: "Plate Loaded",
+    description:
+      "The YR Fitness 82041 Pull Back Machine offers multi-angle back training in a stable, plate-loaded format—perfect for users aiming to build upper body strength and enhance postural control.",
+    image: "/images/equipment/82041.avif",
+    features: ["ISO-Lateral Row & Pulldown Arc", "Adjustable Chest Pad", "Independent Arm Motion", "High-Torque Bearing Assemblies"],
+  },
+];

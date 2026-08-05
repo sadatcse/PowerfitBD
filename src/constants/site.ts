@@ -1,4 +1,5 @@
 import { ROUTES } from "./routes";
+export { GALLERY_IMAGES } from "./gallery";
 
 /** Brand + contact facts sourced from the Figma design. */
 export const SITE = {
@@ -18,7 +19,7 @@ export const SITE = {
 export const SOCIAL_LINKS = {
   facebook: "https://facebook.com/powerfit",
   instagram: "https://instagram.com/powerfit",
-  youtube: "https://youtube.com/@powerfit",
+  youtube: "https://www.youtube.com/@MultiGymPremiumPowerFiT",
   linkedin: "https://linkedin.com/company/powerfit",
   twitter: "https://x.com/powerfit",
 } as const;
@@ -80,7 +81,7 @@ export const BRANCHES: readonly Branch[] = [
     address:
       "5th & 6th Floors, 48/49 Jonota Cooperative Housing Society, Ring Road, Shyamoli, Adabor, Dhaka-1207.",
     phone: "+880 1313-197426",
-    mapUrl: "https://maps.google.com/?q=Adabor+Shyamoli+Dhaka",
+    mapUrl: "https://maps.app.goo.gl/HiinBe2YqhoaH58k7",
     image: "/images/branches/adabor.jpg",
   },
   {
@@ -89,7 +90,7 @@ export const BRANCHES: readonly Branch[] = [
     address:
       "24/1, 24/2 (3rd & 4th Floor), Ring Road, Shiya Masjid Mor, Mohammadpur, Dhaka-1207.",
     phone: "+880 1313-197435",
-    mapUrl: "https://maps.google.com/?q=Shia+Masjid+Mohammadpur+Dhaka",
+    mapUrl: "https://maps.app.goo.gl/L2GZcpb8eJvjwnyV8",
     image: "/images/branches/shia-masjid.jpg",
   },
   {
@@ -98,7 +99,7 @@ export const BRANCHES: readonly Branch[] = [
     address:
       "Lalmatia Shopping Center (2nd Floor), Lalmatia New Colony, Beside Fire Service & Civil Defence (Fire Brigade), Dhaka-1207.",
     phone: "+880 1313-197427",
-    mapUrl: "https://maps.google.com/?q=Lalmatia+Dhaka",
+    mapUrl: "https://maps.app.goo.gl/MLSf6A2evCgMXQBKA",
     image: "/images/branches/lalmatia.jpg",
   },
 ];

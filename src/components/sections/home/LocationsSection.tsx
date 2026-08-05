@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Button } from "@/components/common/Button";
+import { FaMapLocationDot } from "react-icons/fa6";
 import { Container } from "@/components/common/Container";
 import {
   StaggerGroup,
@@ -9,27 +9,24 @@ import { BRANCHES } from "@/constants/site";
 import { IMAGE_SIZES } from "@/utils/image";
 
 /**
- * "Premier Locations" — the three branch cards on the deep navy band
- * (Figma 12:60). Each card carries the branch photo, a pin icon, index numeral,
- * branch name, address block, and directions link.
+ * "Premier Locations" — the three branch cards on deep navy band.
  */
 export function LocationsSection() {
   return (
     <section className="border-y border-line bg-ink-950 py-16 md:py-24 lg:py-[7.5rem]">
       <Container>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div className="flex flex-col gap-4">
-            <h2 className="text-[2rem] leading-[1.1] tracking-[0.03em] text-white sm:text-4xl lg:text-display-2">
-              Our Locations
-            </h2>
-            <p className="max-w-xl text-body-lg text-sand">
-              Find your nearest Multigym Premium and join a community of high-performers.
-            </p>
+        {/* Section Header styled identically to InBody & Full Services sections */}
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 border border-brand/30 bg-brand/10 px-4 py-1.5 text-body-xs font-bold tracking-[0.2em] text-brand-bright uppercase">
+            <FaMapLocationDot className="size-3.5 text-brand-bright" aria-hidden />
+            <span>Premier Athletic Facilities</span>
           </div>
-
-          <Button href="#branches" variant="link">
-            View Map
-          </Button>
+          <h2 className="mt-4 text-[2rem] leading-[1.1] tracking-[0.03em] text-white sm:text-4xl lg:text-display-2">
+            Our Locations
+          </h2>
+          <p className="mt-4 text-body-lg text-sand text-balance-pretty">
+            Find your nearest <span className="font-bold text-brand-bright">Multigym Premium</span> and join a community of high-performers.
+          </p>
         </div>
 
         <StaggerGroup
@@ -38,7 +35,7 @@ export function LocationsSection() {
         >
           {BRANCHES.map((branch, index) => (
             <StaggerItem key={branch.id}>
-              <article className="group flex h-full flex-col overflow-hidden border border-line bg-ink-900 transition-colors duration-300 hover:border-brand">
+              <article className="group flex h-full flex-col overflow-hidden border border-line bg-ink-900 transition-colors duration-300 hover:border-brand/40">
                 <div className="relative aspect-16/10 w-full overflow-hidden">
                   <Image
                     src={branch.image}
@@ -80,7 +77,7 @@ export function LocationsSection() {
                     href={branch.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-auto inline-flex items-center gap-2 pt-4 font-sans text-body-sm font-bold text-white transition-colors hover:text-brand"
+                    className="mt-auto inline-flex items-center gap-2 pt-4 font-sans text-body-sm font-bold text-white transition-colors hover:text-brand-bright"
                   >
                     Get Directions
                     <Image

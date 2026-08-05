@@ -1,6 +1,8 @@
 import { type Metadata } from "next";
 import { DifferenceSection } from "@/components/sections/home/DifferenceSection";
+import { FullServicesRosterSection } from "@/components/sections/home/FullServicesRosterSection";
 import { HomeHero } from "@/components/sections/home/HomeHero";
+import { InBodySection } from "@/components/sections/home/InBodySection";
 import { LocationsSection } from "@/components/sections/home/LocationsSection";
 import { ServicesSection } from "@/components/sections/home/ServicesSection";
 import { buildMetadata, buildOrganisationJsonLd } from "@/lib/seo/metadata";
@@ -24,6 +26,8 @@ export default function HomePage() {
 
       <HomeHero />
       <ServicesSection />
+      <FullServicesRosterSection />
+      <InBodySection />
       <LocationsSection />
       <DifferenceSection />
     </>

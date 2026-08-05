@@ -1,4 +1,5 @@
 import { type Metadata } from "next";
+import { AnimationWrapper } from "@/components/common/AnimationWrapper";
 import { Container } from "@/components/common/Container";
 import { PageHeaderBanner } from "@/components/common/PageHeaderBanner";
 import { ContactForm } from "@/components/sections/contact/ContactForm";
@@ -26,12 +27,16 @@ export default function ContactPage() {
       <section className="bg-ink-900 py-16 md:py-24 lg:py-[7.5rem]">
         <Container flush>
           <div className="grid gap-12 lg:grid-cols-5 lg:gap-16">
-            <div className="lg:col-span-3">
+            <AnimationWrapper direction="left" className="lg:col-span-3">
               <ContactForm />
-            </div>
-            <div className="lg:col-span-2">
+            </AnimationWrapper>
+            <AnimationWrapper
+              direction="right"
+              delay={0.1}
+              className="lg:col-span-2"
+            >
               <ContactInfo />
-            </div>
+            </AnimationWrapper>
           </div>
         </Container>
       </section>
