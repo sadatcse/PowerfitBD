@@ -61,7 +61,7 @@ export function HomeStatsBar() {
                 <p className="font-display text-body-lg font-bold tracking-wide text-white uppercase">
                   {value}
                 </p>
-                <p className="max-w-[160px] truncate text-body-xs text-muted sm:max-w-none">
+                <p className="truncate text-body-xs text-muted lg:max-w-[160px]">
                   {label}
                 </p>
               </div>
