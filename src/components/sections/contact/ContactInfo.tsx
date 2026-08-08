@@ -1,4 +1,4 @@
-import { LuClock, LuMail, LuPhone } from "react-icons/lu";
+import { LuClock, LuMail, LuPhone, LuExternalLink } from "react-icons/lu";
 import { BRANCHES, OPERATING_HOURS, SITE } from "@/constants/site";
 
 const DIRECT = [
@@ -56,16 +56,31 @@ export function ContactInfo() {
       <div className="flex flex-col gap-4">
         <h3 className="text-display-4 text-white">Our Locations</h3>
         {BRANCHES.map((branch) => (
-          <a
+          <div
             key={branch.id}
-            href={branch.mapUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block border-l-2 border-line py-1 pl-4 transition-colors hover:border-brand"
+            className="group block border-l-2 border-line py-2 pl-4 transition-colors hover:border-gold"
           >
-            <p className="text-body-sm font-bold text-white">{branch.name}</p>
-            <p className="text-body-xs text-sand">{branch.address}</p>
-          </a>
+            <div className="flex items-center justify-between gap-2">
+              <a
+                href={branch.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-body-sm font-bold text-white hover:text-gold transition-colors inline-flex items-center gap-1.5"
+              >
+                {branch.name}
+                <LuExternalLink className="size-3.5 text-gold" />
+              </a>
+              <a
+                href={branch.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-body-xs text-brand hover:underline font-semibold"
+              >
+                Directions
+              </a>
+            </div>
+            <p className="text-body-xs text-sand mt-0.5">{branch.address}</p>
+          </div>
         ))}
       </div>
     </div>

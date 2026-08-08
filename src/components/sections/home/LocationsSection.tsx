@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FaMapLocationDot } from "react-icons/fa6";
+import { FaGlobe, FaMapLocationDot } from "react-icons/fa6";
 import { Container } from "@/components/common/Container";
 import {
   StaggerGroup,
@@ -35,8 +35,13 @@ export function LocationsSection() {
         >
           {BRANCHES.map((branch, index) => (
             <StaggerItem key={branch.id}>
-              <article className="group flex h-full flex-col overflow-hidden border border-line bg-ink-900 transition-colors duration-300 hover:border-brand/40">
-                <div className="relative aspect-16/10 w-full overflow-hidden">
+              <article className="group flex h-full flex-col overflow-hidden border border-line bg-ink-900 transition-all duration-300 hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5">
+                <a
+                  href={branch.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative aspect-16/10 w-full overflow-hidden block"
+                >
                   <Image
                     src={branch.image}
                     alt={branch.name}
@@ -56,10 +61,15 @@ export function LocationsSection() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                </div>
+                </a>
 
                 <div className="flex flex-1 flex-col gap-4 p-8">
-                  <div className="flex items-center gap-3">
+                  <a
+                    href={branch.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 group/title"
+                  >
                     <Image
                       src="/images/home/pin-icon.svg"
                       alt=""
@@ -67,27 +77,41 @@ export function LocationsSection() {
                       height={30}
                       className="h-[24px] w-5 shrink-0"
                     />
-                    <h3 className="text-display-4 text-white">{branch.name}</h3>
-                  </div>
+                    <h3 className="text-display-4 text-white transition-colors group-hover/title:text-gold">
+                      {branch.name}
+                    </h3>
+                  </a>
 
                   <p className="text-body-sm text-sand">{branch.address}</p>
                   <p className="text-body-sm text-sand">Phone: {branch.phone}</p>
 
-                  <a
-                    href={branch.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-auto inline-flex items-center gap-2 pt-4 font-sans text-body-sm font-bold text-white transition-colors hover:text-brand-bright"
-                  >
-                    Get Directions
-                    <Image
-                      src="/images/home/arrow-icon.svg"
-                      alt=""
-                      width={10}
-                      height={10}
-                      className="size-[9.333px]"
-                    />
-                  </a>
+                  <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-line/50">
+                    <a
+                      href={branch.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-body-sm font-bold text-sand transition-colors hover:text-white"
+                    >
+                      Get Directions
+                      <Image
+                        src="/images/home/arrow-icon.svg"
+                        alt=""
+                        width={10}
+                        height={10}
+                        className="size-[9.333px]"
+                      />
+                    </a>
+
+                    <a
+                      href={branch.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-gold/10 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-gold border border-gold/30 transition-all hover:bg-gold hover:text-ink-950"
+                    >
+                      <FaGlobe className="size-3.5" />
+                      Visit Website
+                    </a>
+                  </div>
                 </div>
               </article>
             </StaggerItem>

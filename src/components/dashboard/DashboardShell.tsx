@@ -8,6 +8,7 @@ import {
   LuCircleUserRound,
   LuLayoutDashboard,
   LuLogOut,
+  LuMail,
   LuMenu,
   LuMessageSquareQuote,
   LuSettings,
@@ -28,6 +29,12 @@ const NAV_ITEMS = [
     href: ROUTES.dashboard.testimonials,
     label: "Testimonials",
     icon: LuMessageSquareQuote,
+    exact: false,
+  },
+  {
+    href: ROUTES.dashboard.contact,
+    label: "Enquiries",
+    icon: LuMail,
     exact: false,
   },
   {

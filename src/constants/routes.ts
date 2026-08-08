@@ -19,6 +19,7 @@ export const ROUTES = {
     testimonials: "/dashboard/testimonials",
     testimonialCreate: "/dashboard/testimonials/new",
     testimonialEdit: (id: string) => `/dashboard/testimonials/${id}`,
+    contact: "/dashboard/contact",
     profile: "/dashboard/profile",
     settings: "/dashboard/settings",
   },

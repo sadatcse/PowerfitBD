@@ -70,6 +70,7 @@ export interface Branch {
   address: string;
   phone: string;
   mapUrl: string;
+  websiteUrl: string;
   image: string;
 }
 
@@ -82,6 +83,7 @@ export const BRANCHES: readonly Branch[] = [
       "5th & 6th Floors, 48/49 Jonota Cooperative Housing Society, Ring Road, Shyamoli, Adabor, Dhaka-1207.",
     phone: "+880 1313-197426",
     mapUrl: "https://maps.app.goo.gl/HiinBe2YqhoaH58k7",
+    websiteUrl: "https://powerfitbd.com",
     image: "/images/branches/adabor.jpg",
   },
   {
@@ -91,6 +93,7 @@ export const BRANCHES: readonly Branch[] = [
       "24/1, 24/2 (3rd & 4th Floor), Ring Road, Shiya Masjid Mor, Mohammadpur, Dhaka-1207.",
     phone: "+880 1313-197435",
     mapUrl: "https://maps.app.goo.gl/L2GZcpb8eJvjwnyV8",
+    websiteUrl: "https://multigympremium.com",
     image: "/images/branches/shia-masjid.jpg",
   },
   {
@@ -100,6 +103,7 @@ export const BRANCHES: readonly Branch[] = [
       "Lalmatia Shopping Center (2nd Floor), Lalmatia New Colony, Beside Fire Service & Civil Defence (Fire Brigade), Dhaka-1207.",
     phone: "+880 1313-197427",
     mapUrl: "https://maps.app.goo.gl/MLSf6A2evCgMXQBKA",
+    websiteUrl: "https://multigympremium.com",
     image: "/images/branches/lalmatia.jpg",
   },
 ];

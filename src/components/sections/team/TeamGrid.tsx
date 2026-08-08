@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+
 import {
   FaFacebookF,
   FaInstagram,
@@ -9,6 +10,7 @@ import {
   StaggerGroup,
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
+import { ImageWithSkeleton } from "@/components/common/ImageWithSkeleton";
 import { EmptyState } from "@/components/empty-state/EmptyState";
 import { IMAGE_SIZES } from "@/utils/image";
 import { type TeamMember, type TeamSocials } from "@/types/team";
@@ -48,7 +50,7 @@ function SocialRow({ socials }: { socials: TeamSocials }) {
   );
 }
 
-/** Coach/staff grid for the public Team page (Figma 12:690). */
+/** Coach/staff grid for the public Team page (Figma 12:690) with skeleton image loading. */
 export function TeamGrid({ members }: { members: TeamMember[] }) {
   if (members.length === 0) {
     return (
@@ -65,17 +67,18 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
         <StaggerItem key={member._id}>
           <article className="group flex h-full flex-col border border-line bg-ink-950 transition-colors duration-300 hover:border-brand">
             <div className="relative aspect-4/5 w-full overflow-hidden">
-              <Image
+              <ImageWithSkeleton
                 src={member.image}
                 alt={member.name}
                 fill
                 priority={index < 6}
                 sizes={IMAGE_SIZES.third}
                 className="object-cover transition-transform duration-700 ease-(--ease-out-expo) group-hover:scale-105"
+                wrapperClassName="h-full w-full"
               />
               <div
                 aria-hidden
-                className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/10 to-transparent"
+                className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/10 to-transparent pointer-events-none z-20"
               />
             </div>
 

@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { LuPencil, LuPlus, LuTrash2 } from "react-icons/lu";
+import { ImageWithSkeleton } from "@/components/common/ImageWithSkeleton";
 import { Button } from "@/components/common/Button";
 import { SearchBox } from "@/components/common/SearchBox";
 import { Select } from "@/components/forms/Select";
@@ -11,14 +11,13 @@ import { StatusBadge } from "@/components/common/Badge";
 import { DataTable, type Column } from "@/components/table/DataTable";
 import { Pagination } from "@/components/pagination/Pagination";
 import { PageHeader } from "@/components/dashboard/PageHeader";
-import { useAuth } from "@/context/AuthContext";
 import { useConfirm } from "@/hooks/useConfirm";
 import { useDebounce } from "@/hooks/useDebounce";
 import { usePagination } from "@/hooks/usePagination";
 import { useToast } from "@/hooks/useToast";
 import { apiClient, toApiError } from "@/lib/api/client";
 import { API_ROUTES, ROUTES } from "@/constants/routes";
-import { STATUS_OPTIONS, ROLES } from "@/constants/config";
+import { STATUS_OPTIONS } from "@/constants/config";
 import { formatDate } from "@/utils/format";
 import { PLACEHOLDER_IMAGE } from "@/utils/image";
 import { type ApiResponse, type PaginatedData } from "@/types/api";
@@ -36,7 +35,6 @@ async function fetchTeam(params: Record<string, string | number | undefined>) {
 
 /** Full team list: search, filter, sort, paginate, edit, delete. */
 export function TeamListView() {
-  const { user } = useAuth();
   const toast = useToast();
   const queryClient = useQueryClient();
   const { confirm, dialog, close } = useConfirm();
@@ -102,12 +100,13 @@ export function TeamListView() {
       render: (row) => (
         <div className="flex items-center gap-3">
           <div className="relative size-10 shrink-0 overflow-hidden border border-line bg-ink-950">
-            <Image
+            <ImageWithSkeleton
               src={row.image || PLACEHOLDER_IMAGE}
               alt=""
               fill
               sizes="40px"
               className="object-cover"
+              wrapperClassName="size-full"
             />
           </div>
           <span className="font-bold text-white">{row.name}</span>
@@ -135,27 +134,27 @@ export function TeamListView() {
     },
     {
       key: "actions",
-      header: "",
+      header: "Actions",
       className: "text-right",
       render: (row) => (
         <div className="flex justify-end gap-2">
           <Link
             href={ROUTES.dashboard.teamEdit(row._id)}
             aria-label={`Edit ${row.name}`}
+            title="Edit Member"
             className="grid size-8 place-items-center border border-line text-mist transition-colors hover:border-brand hover:text-brand"
           >
             <LuPencil className="size-3.5" aria-hidden />
           </Link>
-          {user?.role === ROLES.admin ? (
-            <button
-              type="button"
-              onClick={() => void handleDelete(row)}
-              aria-label={`Delete ${row.name}`}
-              className="grid size-8 place-items-center border border-line text-mist transition-colors hover:border-danger hover:text-danger"
-            >
-              <LuTrash2 className="size-3.5" aria-hidden />
-            </button>
-          ) : null}
+          <button
+            type="button"
+            onClick={() => void handleDelete(row)}
+            aria-label={`Delete ${row.name}`}
+            title="Delete Member"
+            className="grid size-8 place-items-center border border-line text-mist transition-colors hover:border-danger hover:text-danger hover:bg-danger/10"
+          >
+            <LuTrash2 className="size-3.5" aria-hidden />
+          </button>
         </div>
       ),
     },

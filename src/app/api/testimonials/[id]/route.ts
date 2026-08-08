@@ -39,10 +39,10 @@ export const PATCH = withErrorHandling(
   },
 );
 
-/** DELETE /api/testimonials/:id — admin only. */
+/** DELETE /api/testimonials/:id — staff delete access. */
 export const DELETE = withErrorHandling(
   async (_request: NextRequest, context: RouteContext) => {
-    await requireRole([ROLES.admin]);
+    await requireRole([ROLES.admin, ROLES.editor]);
 
     const { id } = await context.params;
     await testimonialService.remove(objectIdSchema.parse(id));

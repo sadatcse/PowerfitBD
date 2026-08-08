@@ -9,7 +9,6 @@ import { teamService } from "@/services/team.service";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-/** Next 16 delivers dynamic segments as a promise. */
 type RouteContext = { params: Promise<{ id: string }> };
 
 /** GET /api/team/:id */
@@ -35,10 +34,10 @@ export const PATCH = withErrorHandling(
   },
 );
 
-/** DELETE /api/team/:id — admin only. */
+/** DELETE /api/team/:id — staff delete access. */
 export const DELETE = withErrorHandling(
   async (_request: NextRequest, context: RouteContext) => {
-    await requireRole([ROLES.admin]);
+    await requireRole([ROLES.admin, ROLES.editor]);
 
     const { id } = await context.params;
     await teamService.remove(objectIdSchema.parse(id));

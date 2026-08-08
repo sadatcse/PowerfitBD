@@ -1,8 +1,10 @@
-import Image from "next/image";
+"use client";
+
 import {
   StaggerGroup,
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
+import { ImageWithSkeleton } from "@/components/common/ImageWithSkeleton";
 import { IMAGE_SIZES } from "@/utils/image";
 import { cn } from "@/utils/cn";
 
@@ -59,7 +61,7 @@ const CATEGORIES: readonly EquipmentCategory[] = [
   },
 ];
 
-/** Equipment category bento grid (Figma 12:1026). */
+/** Equipment category bento grid (Figma 12:1026) with skeleton image loading. */
 export function EquipmentGrid() {
   return (
     <StaggerGroup className="grid gap-6 md:grid-cols-6">
@@ -72,19 +74,20 @@ export function EquipmentGrid() {
           )}
         >
           <article className="group relative flex h-full min-h-[22rem] flex-col justify-end overflow-hidden border border-line">
-            <Image
+            <ImageWithSkeleton
               src={category.image}
               alt=""
               fill
               sizes={IMAGE_SIZES.half}
               className="object-cover transition-transform duration-700 ease-(--ease-out-expo) group-hover:scale-105"
+              wrapperClassName="absolute inset-0 size-full"
             />
             <div
               aria-hidden
-              className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/80 to-ink-950/20"
+              className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/80 to-ink-950/20 pointer-events-none z-20"
             />
 
-            <div className="relative z-10 flex flex-col gap-3 p-6 lg:p-8">
+            <div className="relative z-30 flex flex-col gap-3 p-6 lg:p-8">
               <p className="eyebrow text-brand">{category.eyebrow}</p>
               <h3 className="text-display-3 text-white">{category.title}</h3>
               <p className="max-w-md text-body-sm text-sand">

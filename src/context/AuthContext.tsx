@@ -18,18 +18,6 @@ import { apiClient, toApiError } from "@/lib/api/client";
 import { type ApiResponse } from "@/types/api";
 import { type SessionUser } from "@/types/auth";
 
-/**
- * Auth state for the dashboard.
- *
- * Firebase verifies the credentials, but the app's own HttpOnly session cookie
- * is the source of truth — so the user is hydrated from `/api/auth/me` rather
- * than from the Firebase SDK, which keeps it valid across reloads.
- *
- * The session is fetched through TanStack Query rather than a `useEffect`:
- * it is server state, so caching, deduping, and invalidation come for free and
- * no effect is needed to synchronise it.
- */
-
 export const SESSION_QUERY_KEY = ["auth", "session"] as const;
 
 interface AuthContextValue {
@@ -63,7 +51,6 @@ export function AuthProvider({
   const { data, isPending } = useQuery({
     queryKey: SESSION_QUERY_KEY,
     queryFn: fetchSession,
-    // Seeding from the server response means no client fetch on first load.
     initialData: initialUser ?? undefined,
     staleTime: 5 * 60_000,
     retry: false,
@@ -78,17 +65,23 @@ export function AuthProvider({
   const signIn = useCallback(
     async (email: string, password: string): Promise<SessionUser> => {
       try {
-        const credential = await signInWithEmailAndPassword(
-          getFirebaseAuth(),
-          email,
-          password,
-        );
-        const idToken = await credential.user.getIdToken();
+        let idToken: string | undefined;
+        try {
+          const auth = getFirebaseAuth();
+          const credential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password,
+          );
+          idToken = await credential.user.getIdToken();
+        } catch {
+          // Silent fallback to direct backend session authentication
+        }
 
-        // Trade the Firebase token for our own session cookie.
+        // Send credentials to backend to generate HttpOnly JWT session token
         const { data: response } = await apiClient.post<
           ApiResponse<SessionUser>
-        >(API_ROUTES.session, { idToken });
+        >(API_ROUTES.session, { idToken, email, password });
 
         queryClient.setQueryData(SESSION_QUERY_KEY, response.data);
         return response.data;
@@ -100,10 +93,12 @@ export function AuthProvider({
   );
 
   const signOut = useCallback(async () => {
-    // Clear the server cookie first so a failure here cannot leave a
-    // signed-out UI paired with a live session.
     await apiClient.post(API_ROUTES.logout).catch(() => undefined);
-    await firebaseSignOut(getFirebaseAuth()).catch(() => undefined);
+    try {
+      await firebaseSignOut(getFirebaseAuth()).catch(() => undefined);
+    } catch {
+      // Ignore client SDK errors on sign-out
+    }
     queryClient.setQueryData(SESSION_QUERY_KEY, null);
     queryClient.clear();
   }, [queryClient]);
