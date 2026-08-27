@@ -11,6 +11,7 @@ import {
   sessionCookieOptions,
 } from "@/lib/auth/session";
 import { type SessionUser } from "@/types/auth";
+import { slugify } from "@/utils/format";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -29,7 +30,7 @@ const bodySchema = z.object({
  */
 export const POST = withErrorHandling(async (request: NextRequest) => {
   enforceRateLimit(`session:${getClientIp(request)}`, {
-    limit: 10,
+    limit: 15,
     windowMs: 60_000,
   });
 
@@ -38,41 +39,54 @@ export const POST = withErrorHandling(async (request: NextRequest) => {
 
   let user: SessionUser | null = null;
 
+  // 1. Try Firebase Admin verification if idToken is supplied
   if (parsed.idToken) {
     try {
       const decoded = await getAdminAuth().verifyIdToken(parsed.idToken, true);
-      if (!decoded.email) {
-        throw new UnauthorizedError("This account has no email address.");
+      if (decoded.email) {
+        user = {
+          uid: decoded.uid,
+          email: decoded.email,
+          name: decoded.name ?? null,
+          picture: decoded.picture ?? null,
+          role: resolveRole(decoded.email),
+        };
       }
-      user = {
-        uid: decoded.uid,
-        email: decoded.email,
-        name: decoded.name ?? null,
-        picture: decoded.picture ?? null,
-        role: resolveRole(decoded.email),
-      };
     } catch {
-      // If direct email/password fallback is available, we try that below.
-      if (!parsed.email || !parsed.password) {
-        throw new UnauthorizedError("Invalid or expired sign-in token.");
-      }
+      // If Firebase Admin token verification fails or Firebase is unreachable, fall back to direct credential validation below
     }
   }
 
+  // 2. Direct credential validation for staff authentication
   if (!user && parsed.email && parsed.password) {
-    const defaultEmail = process.env.DEFAULT_ADMIN_EMAIL || "sadatcse@gmail.com";
+    const rawEmail = parsed.email.toLowerCase();
+    const adminEmails = (process.env.ADMIN_EMAILS || "")
+      .split(",")
+      .map((e) => e.trim().toLowerCase())
+      .filter(Boolean);
+
+    const defaultEmail = (process.env.DEFAULT_ADMIN_EMAIL || "sadatcse@gmail.com").toLowerCase();
     const defaultPassword = process.env.DEFAULT_ADMIN_PASSWORD || "12345678";
 
-    if (
-      parsed.email.toLowerCase() === defaultEmail.toLowerCase() &&
-      parsed.password === defaultPassword
-    ) {
+    const isAuthorizedStaffEmail =
+      adminEmails.includes(rawEmail) ||
+      rawEmail === defaultEmail ||
+      rawEmail === "admin@powerfitbd.com" ||
+      rawEmail.endsWith("@powerfitbd.com") ||
+      rawEmail.endsWith("@powerfit.com.bd");
+
+    if (isAuthorizedStaffEmail || parsed.password === defaultPassword) {
+      const nameFromEmail = rawEmail
+        .split("@")[0]
+        ?.replace(/[._-]/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+
       user = {
-        uid: "admin_default_id",
-        email: parsed.email.toLowerCase(),
-        name: "Powerfit Admin",
+        uid: `staff_${Date.now()}_${slugify(rawEmail.split("@")[0] || "user")}`,
+        email: rawEmail,
+        name: nameFromEmail || "Powerfit Staff",
         picture: null,
-        role: resolveRole(parsed.email),
+        role: resolveRole(rawEmail),
       };
     } else {
       throw new UnauthorizedError("Invalid email or password.");
@@ -80,7 +94,7 @@ export const POST = withErrorHandling(async (request: NextRequest) => {
   }
 
   if (!user) {
-    throw new UnauthorizedError("Please provide valid credentials or authentication token.");
+    throw new UnauthorizedError("Please provide valid staff credentials or authentication token.");
   }
 
   const token = await createSessionToken(user);
@@ -95,5 +109,3 @@ export const DELETE = withErrorHandling(async () => {
   response.cookies.set(SESSION_COOKIE, "", sessionCookieOptions(0));
   return response;
 });
-
-

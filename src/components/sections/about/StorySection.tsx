@@ -30,7 +30,7 @@ export function StorySection() {
           </AnimationWrapper>
 
           {/* Content Column */}
-          <AnimationWrapper direction="right" className="flex flex-col gap-6 lg:col-span-7">
+          <AnimationWrapper direction="right" className="flex flex-col gap-5 lg:col-span-7">
             <div>
               <p className="eyebrow text-brand">Our Story</p>
               <h2 className="mt-2 text-[2rem] leading-[1.1] tracking-[0.03em] text-white sm:text-4xl lg:text-display-2">
@@ -39,45 +39,25 @@ export function StorySection() {
             </div>
 
             <p className="text-body-lg font-medium leading-relaxed text-white text-balance-pretty">
-              Our journey began before 2010 with a simple vision—to create a place where people could stay healthy, become stronger, and enjoy fitness together.
+              Founded pre-2010 in Mohammadpur, our journey began with a simple mission: bringing world-class fitness and genuine equipment to our local community.
             </p>
 
             <p className="text-body text-sand text-balance-pretty">
-              At that time, we never imagined building one of the largest fitness brands in Mohammadpur. We simply wanted to create a gym for our friends and family using quality equipment that was not easily available in Bangladesh. We opened our first gym at Shiya Masjid, Mohammadpur, becoming the first gym in the area.
-            </p>
-
-            <p className="text-body text-sand text-balance-pretty">
-              As more people joined us, we realized that fitness was not just a business—it was a community. The trust and support of our members encouraged us to improve every year and provide better facilities for everyone.
-            </p>
-
-            <p className="text-body text-sand text-balance-pretty">
-              A few years later, we noticed another challenge. Finding genuine sports and gym equipment in Bangladesh was difficult. To solve this problem, we established Multi Sports, making high-quality fitness and sports equipment more accessible for athletes, gym owners, and fitness enthusiasts across the country.
-            </p>
-
-            <p className="text-body text-sand text-balance-pretty">
-              As our experience grew, so did our dream. We wanted to build a premium fitness experience that combined world-class equipment, professional trainers, and a welcoming environment.
-            </p>
-
-            <p className="text-body text-sand text-balance-pretty">
-              This vision led to the opening of Multi Gym Premium Shiya Masjid and Multi Gym Premium Lalmatia. Both branches quickly became known for their modern facilities, premium equipment, and outstanding member experience. The love and trust of our members helped us earn recognition as one of the best gyms in the Mohammadpur area.
+              Starting as the first gym in Shiya Masjid, Mohammadpur, we grew alongside a dedicated community. To solve the shortage of authentic gear in Bangladesh, we launched Multi Sports, supplying high-quality gym equipment nationwide. This experience paved the way for opening premier fitness centers in Shiya Masjid and Lalmatia.
             </p>
 
             {/* 2026 Milestone Accent Box */}
-            <div className="my-2 border-l-2 border-brand bg-ink-950/90 p-6 border-y border-r border-line shadow-lg">
+            <div className="my-1 border-l-2 border-brand bg-ink-950/90 p-5 border-y border-r border-line shadow-lg">
               <span className="text-body-xs font-bold tracking-widest text-brand uppercase">
-                Milestone 2026
+                Milestone 2026 — Powerfit Launch
               </span>
-              <p className="mt-1 text-body-lg font-semibold text-white">
-                In 2026, we proudly introduced Multi Gym Premium Powerfit—our most advanced fitness center, designed to deliver an even higher standard of training, comfort, and performance.
+              <p className="mt-1 text-body-sm font-semibold text-white">
+                In 2026, we introduced Multi Gym Premium Powerfit—our flagship facility designed to set a new benchmark in performance, state-of-the-art training, and member experience.
               </p>
             </div>
 
-            <p className="text-body text-sand text-balance-pretty">
-              Today, our journey continues with the same values that inspired us from the beginning: quality, dedication, and care for every member.
-            </p>
-
-            <p className="text-body font-medium text-sand text-balance-pretty">
-              From one small gym to multiple premium fitness centers, every step has been possible because of the trust of our members. We remain committed to helping people build healthier lifestyles and achieve their fitness goals for many years to come.
+            <p className="text-body text-sand font-medium text-balance-pretty">
+              Today, from a single neighborhood gym to multiple premium centers, our commitment remains unchanged: empowering every member to build a healthier, stronger lifestyle.
             </p>
           </AnimationWrapper>
         </div>
