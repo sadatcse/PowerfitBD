@@ -53,7 +53,7 @@ export function InBodySection() {
                       alt="InBody Body Composition Analyzer Machine"
                       fill
                       sizes={IMAGE_SIZES.half}
-                      className="object-contain drop-shadow-[0_30px_40px_rgb(0_0_0/0.6)]"
+                      className="object-contain drop-shadow-[0_30px_30px_rgb(76_10_38/0.35)]"
                     />
                   </div>
                 </TiltLayer>
@@ -68,7 +68,7 @@ export function InBodySection() {
                   </span>
                 </TiltLayer>
                 <TiltLayer depth={100} className="absolute right-5 bottom-5">
-                  <div className="rounded-2xl bg-linear-to-br from-gold to-[#ffdd55] px-5 py-3 text-ink-950 shadow-[0_15px_40px_-10px_rgb(245_197_24/0.7)]">
+                  <div className="rounded-2xl bg-linear-to-br from-gold to-[#ffdd55] px-5 py-3 text-night shadow-[0_15px_40px_-10px_rgb(245_197_24/0.7)]">
                     <p className="text-[0.65rem] font-bold tracking-[0.2em] uppercase">
                       Worth ৳1,000
                     </p>
@@ -100,7 +100,7 @@ export function InBodySection() {
               {CORE_REPORT_METRICS.map((metric) => (
                 <StaggerItem key={metric}>
                   <div className="flex items-center gap-3 rounded-2xl px-4 py-3.5 glass transition-colors hover:border-brand-bright/40">
-                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-white">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-snow">
                       <FaCheck className="size-3" aria-hidden />
                     </span>
                     <span className="text-body-sm font-semibold text-mist">

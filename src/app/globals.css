@@ -27,6 +27,11 @@
   --color-sand: #d0c6ab; /* body copy */
   --color-muted: #8b97ad; /* secondary / meta */
 
+  /* ---- Fixed colours (never remapped by a theme scope) ----------------- */
+  --color-snow: #ffffff; /* text/fills that must stay white, e.g. on red or photos */
+  --color-wine: #4c0a26; /* photo overlay tint — keeps captions legible */
+  --color-night: #1c1528; /* dark text on gold/light fills */
+
   /* ---- Status ---------------------------------------------------------- */
   --color-success: #16a34a;
   --color-warning: #f59e0b;
@@ -146,6 +151,131 @@
    Base
    ========================================================================== */
 
+/* ==========================================================================
+   Theme surfaces. Defaults are the original navy look (dashboard, login).
+   `.site-theme` re-skins the public site: light by default, dark when the
+   visitor's system prefers it. Inside that scope `white` is remapped to the
+   theme's text colour, so `text-white` / `bg-white/5` follow the theme —
+   use `snow` where true white is needed (text on red, captions on photos).
+   ========================================================================== */
+
+:root {
+  --glass-bg: linear-gradient(145deg, rgb(255 255 255 / 0.06), rgb(255 255 255 / 0.015));
+  --glass-strong-bg: linear-gradient(145deg, rgb(17 34 64 / 0.85), rgb(6 13 26 / 0.85));
+  --glass-border: rgb(255 255 255 / 0.08);
+  --glass-shadow: none;
+  --heading-gradient: linear-gradient(180deg, #ffffff 0%, #9fb0c9 100%);
+  --grid-line: rgb(255 255 255 / 0.045);
+  --floor-line: rgb(255 45 45 / 0.35);
+  --wordmark-stroke: rgb(255 255 255 / 0.08);
+  --card-shadow: 0 20px 40px -28px rgb(0 0 0 / 0.6);
+}
+
+/* ---- Light (default) ---------------------------------------------------- */
+.site-theme {
+  /* Surfaces: warm ivory page, peach-tinted bands, white cards */
+  --color-ink-950: #f7f4ef;
+  --color-ink-900: #fff4ec;
+  --color-ink-850: #f1ebe3;
+  --color-ink-800: #ffffff;
+  --color-line: #e8ded3;
+  --color-line-soft: #efe8df;
+
+  /* Brand: rose-red → coral gradient, amber gold */
+  --color-brand: #e11d48;
+  --color-brand-hover: #be123c;
+  --color-brand-bright: #f2542d;
+  --color-gold: #e08a00;
+  --color-gold-hover: #c27803;
+
+  /* Text: deep plum ink instead of black */
+  --color-white: #1c1528;
+  --color-mist: #2b2238;
+  --color-sand: #584f68;
+  --color-muted: #8a8299;
+
+  --glass-bg: linear-gradient(145deg, rgb(255 255 255 / 0.92), rgb(255 255 255 / 0.7));
+  --glass-strong-bg: linear-gradient(145deg, rgb(255 255 255 / 0.95), rgb(255 248 242 / 0.9));
+  --glass-border: rgb(28 21 40 / 0.08);
+  --glass-shadow: 0 18px 40px -24px rgb(76 10 38 / 0.25);
+  --heading-gradient: linear-gradient(180deg, #1c1528 0%, #4a3d63 100%);
+  --grid-line: rgb(28 21 40 / 0.06);
+  --floor-line: rgb(225 29 72 / 0.28);
+  --wordmark-stroke: rgb(28 21 40 / 0.1);
+  --card-shadow: 0 20px 40px -28px rgb(76 10 38 / 0.35);
+  --page-bg: #f7f4ef;
+  --autofill-bg: #ffffff;
+  --autofill-fg: #1c1528;
+
+  background-color: var(--color-ink-950);
+  color: var(--color-sand);
+  color-scheme: light;
+}
+
+/* ---- Dark (follows the system setting) --------------------------------- */
+@media (prefers-color-scheme: dark) {
+  .site-theme {
+    /* Surfaces: plum-night page, wine-tinted bands, raised plum cards */
+    --color-ink-950: #120d1a;
+    --color-ink-900: #1a1222;
+    --color-ink-850: #1f1729;
+    --color-ink-800: #241b30;
+    --color-line: #352a43;
+    --color-line-soft: #2b2237;
+
+    /* Brand: same family, lifted slightly for contrast on dark */
+    --color-brand: #f0294f;
+    --color-brand-hover: #e11d48;
+    --color-brand-bright: #ff6a3d;
+    --color-gold: #f7b538;
+    --color-gold-hover: #e8a21c;
+
+    /* Text: soft lavender-white */
+    --color-white: #f8f3ff;
+    --color-mist: #e7dff0;
+    --color-sand: #bcb2cb;
+    --color-muted: #8d839c;
+
+    --glass-bg: linear-gradient(145deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.02));
+    --glass-strong-bg: linear-gradient(145deg, rgb(42 31 56 / 0.92), rgb(22 16 31 / 0.92));
+    --glass-border: rgb(255 255 255 / 0.09);
+    --glass-shadow: 0 18px 40px -24px rgb(0 0 0 / 0.6);
+    --heading-gradient: linear-gradient(180deg, #ffffff 0%, #c9b8e0 100%);
+    --grid-line: rgb(255 255 255 / 0.045);
+    --floor-line: rgb(255 106 61 / 0.32);
+    --wordmark-stroke: rgb(255 255 255 / 0.08);
+    --card-shadow: 0 20px 40px -24px rgb(0 0 0 / 0.7);
+    --page-bg: #120d1a;
+    --autofill-bg: #1a1222;
+    --autofill-fg: #f8f3ff;
+
+    color-scheme: dark;
+  }
+}
+
+.site-theme ::selection {
+  color: var(--color-snow);
+}
+
+body:has(.site-theme) {
+  background-color: #f7f4ef;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(.site-theme) {
+    background-color: #120d1a;
+  }
+}
+
+.site-theme input:-webkit-autofill,
+.site-theme textarea:-webkit-autofill,
+.site-theme select:-webkit-autofill {
+  -webkit-text-fill-color: var(--autofill-fg) !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--autofill-bg) inset !important;
+  box-shadow: 0 0 0 1000px var(--autofill-bg) inset !important;
+  caret-color: var(--autofill-fg) !important;
+}
+
 @layer base {
   * {
     border-color: var(--color-line);
@@ -180,7 +310,7 @@
   h6 {
     font-family: var(--font-display);
     font-weight: 400;
-    color: #fff;
+    color: var(--color-white);
     text-transform: uppercase;
   }
 
@@ -262,35 +392,30 @@
    3D / modern surface utilities
    ========================================================================== */
 
-/* Frosted glass panel — the base surface for cards across the site. */
+/* Frosted glass panel — the base surface for cards across the site.
+   Colours come from --glass-* so a theme scope can restyle every panel. */
 @utility glass {
-  background: linear-gradient(
-    145deg,
-    rgb(255 255 255 / 0.06) 0%,
-    rgb(255 255 255 / 0.015) 100%
-  );
-  border: 1px solid rgb(255 255 255 / 0.08);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
 }
 
 @utility glass-strong {
-  background: linear-gradient(
-    145deg,
-    rgb(17 34 64 / 0.85) 0%,
-    rgb(6 13 26 / 0.85) 100%
-  );
-  border: 1px solid rgb(255 255 255 / 0.1);
+  background: var(--glass-strong-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
-/* Crimson → red → gold headline gradient. */
+/* Brand headline gradient. */
 @utility text-gradient {
   background-image: linear-gradient(
     100deg,
-    var(--color-brand-bright) 0%,
-    #ff5a3c 45%,
+    var(--color-brand) 0%,
+    var(--color-brand-bright) 50%,
     var(--color-gold) 100%
   );
   background-clip: text;
@@ -299,7 +424,7 @@
 }
 
 @utility text-gradient-silver {
-  background-image: linear-gradient(180deg, #ffffff 0%, #9fb0c9 100%);
+  background-image: var(--heading-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -308,8 +433,8 @@
 /* Hairline grid, faded toward the edges. */
 @utility bg-grid {
   background-image:
-    linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
 }
@@ -317,8 +442,8 @@
 /* Tilted grid "floor" used under page banners for depth. */
 @utility perspective-floor {
   background-image:
-    linear-gradient(rgb(255 45 45 / 0.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 45 45 / 0.35) 1px, transparent 1px);
+    linear-gradient(var(--floor-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--floor-line) 1px, transparent 1px);
   background-size: 48px 48px;
   transform: perspective(500px) rotateX(62deg);
   transform-origin: center top;
@@ -335,9 +460,9 @@
     border-radius: inherit;
     background: linear-gradient(
       135deg,
-      rgb(255 45 45 / 0.7),
-      rgb(255 255 255 / 0.05) 40%,
-      rgb(245 197 24 / 0.5)
+      var(--color-brand-bright),
+      transparent 45%,
+      var(--color-gold)
     );
     mask:
       linear-gradient(#000 0 0) content-box,

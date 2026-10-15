@@ -59,7 +59,7 @@ function MembershipCard({ item }: { item: PriceItem }) {
       >
         {item.featured ? (
           <TiltLayer depth={60} className="absolute -top-4 right-6">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-gold to-[#ffdd55] px-4 py-1.5 text-body-xs font-bold tracking-[0.15em] text-ink-950 uppercase shadow-[0_10px_25px_-5px_rgb(245_197_24/0.8)]">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-gold to-[#ffdd55] px-4 py-1.5 text-body-xs font-bold tracking-[0.15em] text-night uppercase shadow-[0_10px_25px_-5px_rgb(245_197_24/0.8)]">
               <LuCrown className="size-3.5" aria-hidden />
               Best Value
             </span>
@@ -161,7 +161,7 @@ function AddonPanel({
     <div className="glass relative overflow-hidden rounded-[1.75rem] p-8">
       <div aria-hidden className="absolute -top-20 -right-20 size-56 rounded-full bg-brand/20 blur-3xl" />
       <div className="relative flex items-center gap-4">
-        <span className="grid size-12 place-items-center rounded-xl bg-linear-to-br from-brand to-brand-bright text-white">
+        <span className="grid size-12 place-items-center rounded-xl bg-linear-to-br from-brand to-brand-bright text-snow">
           <Icon className="size-5" aria-hidden />
         </span>
         <h3 className="text-[2rem] leading-none tracking-[0.03em] text-white">{title}</h3>
@@ -265,7 +265,7 @@ export function PricingPlans() {
             <div aria-hidden className="absolute -right-20 -bottom-20 size-72 rounded-full bg-gold/20 blur-[90px]" />
             <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-start gap-5">
-                <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-gold to-[#ffdd55] text-ink-950 shadow-[0_15px_35px_-10px_rgb(245_197_24/0.8)]">
+                <span className="grid size-16 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-gold to-[#ffdd55] text-night shadow-[0_15px_35px_-10px_rgb(245_197_24/0.8)]">
                   <LuIdCard className="size-7" aria-hidden />
                 </span>
                 <div>

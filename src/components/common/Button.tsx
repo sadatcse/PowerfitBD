@@ -36,12 +36,12 @@ const BASE =
 
 const VARIANTS: Record<ButtonVariant, string> = {
   primary:
-    "bg-linear-to-r from-brand via-[#d6122f] to-brand-bright text-white shadow-[0_10px_30px_-8px_rgb(255_45_45/0.6)] " +
-    "hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-8px_rgb(255_45_45/0.75)] active:translate-y-0",
+    "bg-linear-to-r from-brand via-[#ec3352] to-brand-bright text-snow shadow-[0_10px_30px_-10px_rgb(225_29_72/0.55)] " +
+    "hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-10px_rgb(225_29_72/0.7)] active:translate-y-0",
   outline:
     "border border-white/25 bg-white/5 text-white backdrop-blur-md hover:border-white/60 hover:bg-white/10 hover:-translate-y-0.5 active:translate-y-0",
   gold:
-    "bg-linear-to-r from-gold to-[#ffdd55] text-ink-900 shadow-[0_10px_30px_-8px_rgb(245_197_24/0.55)] " +
+    "bg-linear-to-r from-gold to-[#ffdd55] text-night shadow-[0_10px_30px_-8px_rgb(245_197_24/0.55)] " +
     "hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-8px_rgb(245_197_24/0.7)] active:translate-y-0",
   ghost:
     "border border-line bg-transparent text-mist hover:border-brand hover:text-white",
@@ -115,7 +115,7 @@ export const Button = forwardRef<HTMLButtonElement & HTMLAnchorElement, ButtonPr
         {SHINE.includes(variant) ? (
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 -z-10 w-1/3 animate-shine bg-linear-to-r from-transparent via-white/35 to-transparent"
+            className="pointer-events-none absolute inset-y-0 left-0 -z-10 w-1/3 animate-shine bg-linear-to-r from-transparent via-snow/40 to-transparent"
           />
         ) : null}
         {loading ? <Spinner size="sm" /> : leftIcon}

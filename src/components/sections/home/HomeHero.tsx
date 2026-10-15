@@ -70,7 +70,7 @@ export function HomeHero() {
                 size="lg"
                 variant="outline"
                 leftIcon={
-                  <span className="grid size-6 place-items-center rounded-full bg-white text-ink-950">
+                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-snow">
                     <LuPlay className="size-3 translate-x-px fill-current" aria-hidden />
                   </span>
                 }
@@ -110,7 +110,7 @@ export function HomeHero() {
             className="absolute right-0 bottom-6 hidden sm:block"
           >
             <div className="glass animate-float-slow flex items-center gap-3 rounded-2xl px-4 py-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-linear-to-br from-brand to-brand-bright text-white">
+              <span className="grid size-10 place-items-center rounded-xl bg-linear-to-br from-brand to-brand-bright text-snow">
                 <LuMapPin className="size-5" aria-hidden />
               </span>
               <div>

@@ -13,7 +13,7 @@ export const metadata: Metadata = buildMetadata({
 
 export default function NotFound() {
   return (
-    <main className="relative isolate flex min-h-screen flex-1 items-center overflow-hidden bg-ink-950">
+    <main className="site-theme relative isolate flex min-h-screen flex-1 items-center overflow-hidden bg-ink-950">
       <GlowBackdrop className="-z-10" grid variant="center" />
       <div
         aria-hidden

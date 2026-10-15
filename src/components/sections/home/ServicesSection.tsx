@@ -95,7 +95,7 @@ export function ServicesSection() {
               )}
             >
               <TiltCard max={7} className="rounded-[1.75rem]">
-                <article className="group relative flex h-full min-h-[22rem] flex-col justify-end rounded-[1.75rem] border border-white/10 preserve-3d lg:min-h-[26rem]">
+                <article className="group relative flex h-full min-h-[22rem] flex-col justify-end rounded-[1.75rem] border border-white/10 shadow-[0_30px_60px_-30px_rgb(76_10_38/0.5)] preserve-3d lg:min-h-[26rem]">
                   <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
                     <Image
                       src={service.image}
@@ -106,7 +106,7 @@ export function ServicesSection() {
                     />
                     <div
                       aria-hidden
-                      className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/60 to-transparent"
+                      className="absolute inset-0 bg-linear-to-t from-wine/95 via-wine/45 to-transparent"
                     />
                     <div
                       aria-hidden
@@ -115,12 +115,12 @@ export function ServicesSection() {
                   </div>
 
                   <TiltLayer depth={50} className="absolute top-6 left-6">
-                    <span className="font-display text-[3.5rem] leading-none text-white/15 [-webkit-text-stroke:1px_rgb(255_255_255/0.4)]">
+                    <span className="font-display text-[3.5rem] leading-none text-snow/15 [-webkit-text-stroke:1px_rgb(255_255_255/0.6)]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </TiltLayer>
                   <TiltLayer depth={60} className="absolute top-6 right-6">
-                    <span className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all duration-300 group-hover:rotate-45 group-hover:bg-brand-bright">
+                    <span className="grid size-12 place-items-center rounded-full border border-snow/30 bg-snow/15 text-snow backdrop-blur-md transition-all duration-300 group-hover:rotate-45 group-hover:bg-brand-bright group-hover:text-snow hover:text-snow">
                       <LuArrowUpRight className="size-5" aria-hidden />
                     </span>
                   </TiltLayer>
@@ -129,13 +129,13 @@ export function ServicesSection() {
                     depth={40}
                     className="relative z-10 flex flex-col gap-3 p-7 lg:p-9"
                   >
-                    <p className="eyebrow text-brand-bright">
+                    <p className="eyebrow text-[#ffb59e]">
                       {service.eyebrow}
                     </p>
-                    <h3 className="text-[2rem] leading-none tracking-[0.03em] text-white lg:text-[2.5rem]">
+                    <h3 className="text-[2rem] leading-none tracking-[0.03em] text-snow lg:text-[2.5rem]">
                       {service.title}
                     </h3>
-                    <p className="max-w-md text-body-sm text-sand/90">
+                    <p className="max-w-md text-body-sm text-snow/85">
                       {service.description}
                     </p>
                   </TiltLayer>

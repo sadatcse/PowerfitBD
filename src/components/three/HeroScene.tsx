@@ -12,8 +12,9 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
  * downloads. Rendering pauses whenever the canvas scrolls out of view.
  */
 
-const CRIMSON = "#ff2d2d";
-const GOLD = "#f5c518";
+const CRIMSON = "#e11d48";
+const CORAL = "#ff6a3d";
+const GOLD = "#f59e0b";
 
 /**
  * Deterministic PRNG (mulberry32). Keeps render pure — the ember field and
@@ -55,16 +56,16 @@ function useMaterials() {
         roughness: 0.42,
       }),
       rubber: new THREE.MeshPhysicalMaterial({
-        color: "#11151d",
-        metalness: 0.35,
-        roughness: 0.38,
+        color: "#c8163f",
+        metalness: 0.25,
+        roughness: 0.32,
         clearcoat: 1,
         clearcoatRoughness: 0.25,
       }),
       crimson: new THREE.MeshStandardMaterial({
-        color: CRIMSON,
-        emissive: CRIMSON,
-        emissiveIntensity: 0.55,
+        color: CORAL,
+        emissive: CORAL,
+        emissiveIntensity: 0.45,
         metalness: 0.6,
         roughness: 0.3,
       }),
@@ -245,13 +246,13 @@ function Embers({ count = 380 }: { count?: number }) {
     const colors = new Float32Array(count * 3);
     const red = new THREE.Color(CRIMSON);
     const gold = new THREE.Color(GOLD);
-    const white = new THREE.Color("#ffffff");
+    const coral = new THREE.Color(CORAL);
     for (let i = 0; i < count; i++) {
       positions[i * 3] = (random() - 0.5) * 14;
       positions[i * 3 + 1] = (random() - 0.5) * 9;
       positions[i * 3 + 2] = (random() - 0.5) * 8 - 1;
       const roll = random();
-      const c = roll < 0.55 ? red : roll < 0.85 ? gold : white;
+      const c = roll < 0.5 ? red : roll < 0.8 ? coral : gold;
       colors.set([c.r, c.g, c.b], i * 3);
     }
     const geo = new THREE.BufferGeometry();
@@ -278,12 +279,12 @@ function Embers({ count = 380 }: { count?: number }) {
   return (
     <points ref={ref} geometry={geometry}>
       <pointsMaterial
-        size={0.045}
+        size={0.055}
         vertexColors
         transparent
-        opacity={0.85}
+        opacity={0.75}
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={THREE.NormalBlending}
         sizeAttenuation
       />
     </points>
@@ -313,9 +314,9 @@ function Scene() {
 
   return (
     <>
-      <ambientLight intensity={0.25} />
+      <ambientLight intensity={0.55} />
       <directionalLight position={[4, 6, 5]} intensity={1.6} color="#ffffff" />
-      <pointLight position={[-5, -1, 3]} intensity={30} color={CRIMSON} />
+      <pointLight position={[-5, -1, 3]} intensity={22} color={CORAL} />
       <pointLight position={[5, 2, -2]} intensity={18} color={GOLD} />
 
       <group scale={compact ? 0.72 : 1}>

@@ -8,7 +8,7 @@ function SceneFallback() {
   return (
     <div aria-hidden className="absolute inset-0 grid place-items-center">
       <div className="relative size-72 sm:size-96">
-        <div className="absolute inset-0 animate-pulse-glow rounded-full bg-brand/25 blur-3xl" />
+        <div className="absolute inset-0 animate-pulse-glow rounded-full bg-brand/20 blur-3xl" />
         <div className="absolute inset-8 animate-spin-slow rounded-full border border-dashed border-brand-bright/40" />
         <div className="absolute inset-16 rounded-full border border-gold/30" />
       </div>

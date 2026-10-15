@@ -59,10 +59,10 @@ export function LeadershipSection() {
                             sizes={IMAGE_SIZES.third}
                             className="object-cover"
                           />
-                          <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink-950/90 via-transparent to-transparent" />
+                          <div aria-hidden className="absolute inset-0 bg-linear-to-t from-wine/70 via-transparent to-transparent" />
                         </div>
                         <TiltLayer depth={70} className="absolute bottom-5 left-5">
-                          <span className="rounded-full bg-linear-to-r from-brand to-brand-bright px-4 py-2 text-body-xs font-bold tracking-[0.15em] text-white uppercase shadow-[0_10px_30px_-5px_rgb(255_45_45/0.8)]">
+                          <span className="rounded-full bg-linear-to-r from-brand to-brand-bright px-4 py-2 text-body-xs font-bold tracking-[0.15em] text-snow uppercase shadow-[0_10px_30px_-5px_rgb(255_45_45/0.8)]">
                             {leader.badge}
                           </span>
                         </TiltLayer>
@@ -80,7 +80,7 @@ export function LeadershipSection() {
                     </div>
 
                     <blockquote className="relative rounded-2xl border border-white/10 bg-linear-to-br from-brand/20 to-transparent p-6">
-                      <LuQuote className="absolute -top-4 left-6 size-9 rounded-full bg-brand-bright p-2 text-white" aria-hidden />
+                      <LuQuote className="absolute -top-4 left-6 size-9 rounded-full bg-brand-bright p-2 text-snow" aria-hidden />
                       <p className="font-display text-[1.6rem] leading-tight tracking-[0.02em] text-white">
                         &ldquo;{leader.quote}&rdquo;
                       </p>

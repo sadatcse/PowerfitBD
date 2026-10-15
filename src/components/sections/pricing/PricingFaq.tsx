@@ -68,7 +68,7 @@ export function PricingFaq() {
                     <span className="font-display text-[1.5rem] leading-tight tracking-[0.03em] text-white uppercase">
                       {faq.question}
                     </span>
-                    <span className="grid size-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition-all duration-300 group-open:rotate-45 group-open:border-brand-bright group-open:bg-brand-bright">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition-all duration-300 group-open:rotate-45 group-open:border-brand-bright group-open:bg-brand-bright group-open:text-snow">
                       <LuPlus className="size-4" aria-hidden />
                     </span>
                   </summary>

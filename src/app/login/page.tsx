@@ -46,9 +46,12 @@ export default function LoginPage() {
           <div className="w-full max-w-md">
             {/* Header Logo */}
             <div className="flex flex-col items-center gap-3 mb-8">
-              <Link href={ROUTES.home} className="inline-block transition-transform hover:scale-105">
-                <Logo showWordmark tone="gold" />
-              </Link>
+              {/* Logo is itself a home link — wrapping it in another <Link> nests <a> tags. */}
+              <Logo
+                showWordmark
+                tone="gold"
+                className="transition-transform hover:scale-105"
+              />
             </div>
 
             {/* Glassmorphic Portal Card */}

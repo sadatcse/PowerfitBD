@@ -47,7 +47,7 @@ export function Header() {
           className={cn(
             "pointer-events-auto mx-auto flex max-w-[78rem] items-center justify-between gap-4 rounded-full px-4 transition-all duration-500 ease-(--ease-out-expo) sm:px-6",
             scrolled
-              ? "glass-strong h-16 shadow-[0_20px_50px_-20px_rgb(0_0_0/0.8)]"
+              ? "glass-strong h-16 shadow-[0_20px_50px_-24px_rgb(76_10_38/0.35)]"
               : "h-20 border border-transparent bg-transparent",
           )}
         >
@@ -63,7 +63,7 @@ export function Header() {
                       <motion.span
                         layoutId="nav-active"
                         transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                        className="absolute inset-0 rounded-full bg-linear-to-r from-brand to-brand-bright shadow-[0_6px_20px_-6px_rgb(255_45_45/0.7)]"
+                        className="absolute inset-0 rounded-full bg-linear-to-r from-brand to-brand-bright shadow-[0_6px_20px_-6px_rgb(225_29_72/0.6)]"
                       />
                     ) : null}
                     <Link
@@ -71,7 +71,7 @@ export function Header() {
                       aria-current={active ? "page" : undefined}
                       className={cn(
                         "relative block rounded-full px-4 py-2 font-nav text-body-sm font-semibold tracking-[0.06em] uppercase transition-colors duration-200",
-                        active ? "text-white" : "text-mist/80 hover:text-white",
+                        active ? "text-snow" : "text-mist/80 hover:text-brand",
                       )}
                     >
                       {link.label}

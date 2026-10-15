@@ -58,7 +58,7 @@ export function LocationsSection() {
                     />
                     <div
                       aria-hidden
-                      className="absolute inset-0 bg-linear-to-t from-ink-950/90 via-ink-950/10 to-transparent"
+                      className="absolute inset-0 bg-linear-to-t from-wine/70 via-transparent to-transparent"
                     />
                     <span
                       aria-hidden
@@ -69,7 +69,7 @@ export function LocationsSection() {
                   </a>
 
                   <TiltLayer depth={60} className="absolute top-7 right-7">
-                    <span className="grid size-11 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-white shadow-[0_10px_30px_-5px_rgb(255_45_45/0.8)]">
+                    <span className="grid size-11 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-snow shadow-[0_10px_30px_-5px_rgb(255_45_45/0.8)]">
                       <LuMapPin className="size-5" aria-hidden />
                     </span>
                   </TiltLayer>
@@ -92,7 +92,7 @@ export function LocationsSection() {
                         href={branch.mapUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2.5 text-body-xs font-bold tracking-wider text-white uppercase ring-1 ring-white/10 transition-all hover:bg-brand hover:ring-brand-bright"
+                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2.5 text-body-xs font-bold tracking-wider text-snow uppercase ring-1 ring-white/10 transition-all hover:bg-brand hover:text-snow hover:ring-brand-bright"
                       >
                         <LuNavigation className="size-3.5" aria-hidden />
                         Directions
@@ -101,7 +101,7 @@ export function LocationsSection() {
                         href={branch.websiteUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-gold/10 px-4 py-2.5 text-body-xs font-bold tracking-wider text-gold uppercase ring-1 ring-gold/30 transition-all hover:bg-gold hover:text-ink-950"
+                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-gold/10 px-4 py-2.5 text-body-xs font-bold tracking-wider text-gold uppercase ring-1 ring-gold/30 transition-all hover:bg-gold hover:text-night"
                       >
                         <LuGlobe className="size-3.5" aria-hidden />
                         Website

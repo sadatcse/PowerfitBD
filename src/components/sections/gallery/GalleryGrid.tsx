@@ -81,12 +81,12 @@ export function GalleryGrid() {
                 />
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 z-20 flex items-end justify-between bg-linear-to-t from-ink-950/90 via-ink-950/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="pointer-events-none absolute inset-0 z-20 flex items-end justify-between bg-linear-to-t from-wine/85 via-wine/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 >
-                  <span className="font-display text-[1.5rem] leading-none text-white">
+                  <span className="font-display text-[1.5rem] leading-none text-snow">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="grid size-10 place-items-center rounded-full bg-brand-bright text-white">
+                  <span className="grid size-10 place-items-center rounded-full bg-brand-bright text-snow">
                     <LuZoomIn className="size-4" />
                   </span>
                 </span>
@@ -143,7 +143,7 @@ export function GalleryGrid() {
                 step(-1);
               }}
               aria-label="Previous photo"
-              className="glass absolute top-1/2 left-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-white transition-colors hover:bg-brand sm:left-6"
+              className="glass absolute top-1/2 left-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-snow transition-colors hover:bg-brand hover:text-snow sm:left-6"
             >
               <LuChevronLeft className="size-5" aria-hidden />
             </button>
@@ -154,7 +154,7 @@ export function GalleryGrid() {
                 step(1);
               }}
               aria-label="Next photo"
-              className="glass absolute top-1/2 right-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-white transition-colors hover:bg-brand sm:right-6"
+              className="glass absolute top-1/2 right-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-snow transition-colors hover:bg-brand hover:text-snow sm:right-6"
             >
               <LuChevronRight className="size-5" aria-hidden />
             </button>
@@ -162,7 +162,7 @@ export function GalleryGrid() {
               type="button"
               onClick={() => setActive(null)}
               aria-label="Close gallery"
-              className="glass absolute top-4 right-4 grid size-12 place-items-center rounded-full text-white transition-colors hover:bg-brand sm:top-6 sm:right-6"
+              className="glass absolute top-4 right-4 grid size-12 place-items-center rounded-full text-snow transition-colors hover:bg-brand hover:text-snow sm:top-6 sm:right-6"
             >
               <LuX className="size-5" aria-hidden />
             </button>

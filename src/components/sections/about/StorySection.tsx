@@ -53,7 +53,7 @@ export function StorySection() {
                     sizes={IMAGE_SIZES.half}
                     className="object-cover"
                   />
-                  <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink-950 via-transparent to-transparent" />
+                  <div aria-hidden className="absolute inset-0 bg-linear-to-t from-wine/60 via-transparent to-transparent" />
                 </div>
                 <TiltLayer depth={90} className="absolute -right-4 bottom-10 sm:-right-8">
                   <div className="glass-strong rounded-2xl px-6 py-5">
@@ -64,7 +64,7 @@ export function StorySection() {
                   </div>
                 </TiltLayer>
                 <TiltLayer depth={60} className="absolute top-6 left-6">
-                  <span className="rounded-full bg-linear-to-r from-brand to-brand-bright px-4 py-2 text-body-xs font-bold tracking-[0.15em] text-white uppercase shadow-lg">
+                  <span className="rounded-full bg-linear-to-r from-brand to-brand-bright px-4 py-2 text-body-xs font-bold tracking-[0.15em] text-snow uppercase shadow-lg">
                     Est. Mohammadpur
                   </span>
                 </TiltLayer>

@@ -40,7 +40,7 @@ function SocialRow({ socials }: { socials: TeamSocials }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={key}
-              className="grid size-9 place-items-center rounded-full border border-white/15 bg-ink-950/60 text-white backdrop-blur-md transition-all hover:scale-110 hover:border-brand-bright hover:bg-brand"
+              className="grid size-9 place-items-center rounded-full border border-snow/60 bg-snow/90 text-brand backdrop-blur-md transition-all hover:scale-110 hover:border-brand-bright hover:bg-brand hover:text-snow"
             >
               <Icon className="size-3.5" aria-hidden />
             </a>
@@ -81,7 +81,7 @@ export function TeamGrid({ members }: { members: TeamMember[] }) {
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 z-20 bg-linear-to-t from-ink-950 via-ink-950/20 to-transparent"
+                  className="pointer-events-none absolute inset-0 z-20 bg-linear-to-t from-wine/60 via-transparent to-transparent"
                 />
                 <div
                   aria-hidden

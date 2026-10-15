@@ -18,11 +18,11 @@ export function HomeMarquee() {
       aria-label="Highlights"
       className="relative z-10 overflow-hidden bg-ink-950 py-12"
     >
-      <div className="-rotate-2 bg-linear-to-r from-brand via-brand-bright to-brand py-4 shadow-[0_20px_60px_-15px_rgb(255_45_45/0.6)]">
+      <div className="-rotate-2 bg-linear-to-r from-brand via-brand-bright to-brand py-4 shadow-[0_20px_50px_-20px_rgb(225_29_72/0.55)]">
         <Marquee
           items={TAGLINES}
-          className="font-display text-[2rem] tracking-[0.05em] text-white uppercase sm:text-[2.75rem]"
-          separator={<span className="text-gold">✦</span>}
+          className="font-display text-[2rem] tracking-[0.05em] text-snow uppercase sm:text-[2.75rem]"
+          separator={<span className="text-[#ffe08a]">✦</span>}
         />
       </div>
       <div className="-mt-5 rotate-2 sm:mt-[-3.25rem] border-y border-white/10 bg-ink-900/90 py-3 backdrop-blur-md">

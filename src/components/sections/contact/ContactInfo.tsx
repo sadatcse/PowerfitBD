@@ -17,7 +17,7 @@ export function ContactInfo() {
             href={href}
             className="glass group flex items-center gap-4 rounded-2xl p-5 transition-colors hover:border-brand-bright/40"
           >
-            <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand to-brand-bright text-white shadow-[0_10px_25px_-8px_rgb(255_45_45/0.8)]">
+            <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand to-brand-bright text-snow shadow-[0_10px_25px_-8px_rgb(255_45_45/0.8)]">
               <Icon className="size-5" aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
@@ -72,7 +72,7 @@ export function ContactInfo() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Directions to ${branch.name}`}
-              className="grid size-9 shrink-0 place-items-center rounded-full bg-white/5 text-mist ring-1 ring-white/10 transition-all hover:bg-brand hover:text-white"
+              className="grid size-9 shrink-0 place-items-center rounded-full bg-white/5 text-mist ring-1 ring-white/10 transition-all hover:bg-brand hover:text-snow"
             >
               <LuNavigation className="size-3.5" aria-hidden />
             </a>

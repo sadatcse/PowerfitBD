@@ -102,7 +102,7 @@ export function EquipmentCatalog() {
                 onClick={() => selectCategory(cat.id)}
                 className={cn(
                   "relative rounded-full px-5 py-2.5 text-body-xs font-bold tracking-[0.1em] whitespace-nowrap uppercase transition-colors",
-                  selected ? "text-white" : "text-mist/70 hover:text-white",
+                  selected ? "text-snow" : "text-mist/70 hover:text-brand",
                 )}
               >
                 {selected ? (
@@ -114,7 +114,7 @@ export function EquipmentCatalog() {
                 ) : null}
                 <span className="relative">
                   {cat.label}
-                  <span className={cn("ml-2", selected ? "text-white/70" : "text-muted")}>
+                  <span className={cn("ml-2", selected ? "text-snow/75" : "text-muted")}>
                     {cat.count}
                   </span>
                 </span>
@@ -132,7 +132,7 @@ export function EquipmentCatalog() {
         {currentItems.map((item) => (
           <StaggerItem key={item.id} className="h-full">
             <TiltCard max={10} className="rounded-[1.5rem]">
-              <article className="group preserve-3d relative flex h-full flex-col rounded-[1.5rem] border border-white/10 bg-linear-to-b from-ink-800/70 to-ink-950">
+              <article className="group preserve-3d relative flex h-full flex-col rounded-[1.5rem] border border-white/10 bg-ink-800 shadow-(--card-shadow)">
                 <button
                   type="button"
                   onClick={() => setActiveModalItem(item)}
@@ -140,7 +140,7 @@ export function EquipmentCatalog() {
                   className="absolute inset-0 z-40 rounded-[inherit]"
                 />
 
-                <div className="relative m-2.5 aspect-4/3 overflow-hidden rounded-[1.1rem] bg-white">
+                <div className="relative m-2.5 aspect-4/3 overflow-hidden rounded-[1.1rem] bg-snow">
                   <Image
                     src={item.image}
                     alt={item.title}
@@ -168,7 +168,7 @@ export function EquipmentCatalog() {
                   </p>
                   <div className="mt-auto flex items-center justify-between pt-3 text-body-xs font-bold tracking-wider text-white uppercase">
                     <span>View Specs</span>
-                    <span className="grid size-9 place-items-center rounded-full bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover:rotate-45 group-hover:bg-brand-bright">
+                    <span className="grid size-9 place-items-center rounded-full bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover:rotate-45 group-hover:bg-brand-bright group-hover:text-snow hover:text-snow">
                       <LuArrowUpRight className="size-4" aria-hidden />
                     </span>
                   </div>
@@ -211,7 +211,7 @@ export function EquipmentCatalog() {
                 className={cn(
                   "grid size-10 place-items-center rounded-full text-body-sm font-bold transition-all duration-200",
                   currentPage === pageNum
-                    ? "bg-linear-to-br from-brand to-brand-bright text-white shadow-[0_6px_16px_-4px_rgb(255_45_45/0.7)]"
+                    ? "bg-linear-to-br from-brand to-brand-bright text-snow shadow-[0_6px_16px_-4px_rgb(255_45_45/0.7)]"
                     : "text-mist hover:bg-white/10 hover:text-white",
                 )}
               >
@@ -258,13 +258,13 @@ export function EquipmentCatalog() {
                 type="button"
                 onClick={() => setActiveModalItem(null)}
                 aria-label="Close"
-                className="absolute top-4 right-4 z-20 grid size-11 place-items-center rounded-full border border-white/10 bg-ink-950 text-mist transition-colors hover:border-brand-bright hover:bg-brand hover:text-white"
+                className="absolute top-4 right-4 z-20 grid size-11 place-items-center rounded-full border border-white/10 bg-ink-950 text-mist transition-colors hover:border-brand-bright hover:bg-brand hover:text-snow"
               >
                 <FaXmark className="size-5" />
               </button>
 
               <div className="grid gap-8 md:grid-cols-12 md:items-start">
-                <div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] bg-white md:col-span-5">
+                <div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] border border-line bg-snow md:col-span-5">
                   <Image
                     src={activeModalItem.image}
                     alt={activeModalItem.title}
@@ -310,7 +310,7 @@ export function EquipmentCatalog() {
                           key={feat}
                           className="flex items-center gap-2.5 rounded-xl bg-white/5 px-3 py-2.5 text-body-xs font-semibold text-mist"
                         >
-                          <span className="grid size-5 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-white">
+                          <span className="grid size-5 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-snow">
                             <FaCheck className="size-2.5" />
                           </span>
                           {feat}

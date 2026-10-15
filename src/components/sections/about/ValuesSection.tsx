@@ -66,7 +66,7 @@ export function ValuesSection() {
                   <div className="backface-hidden absolute inset-0 flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-white/10 bg-linear-to-br from-ink-800 to-ink-950 p-8">
                     <div aria-hidden className="absolute -top-16 -right-16 size-48 rounded-full bg-brand/25 blur-3xl" />
                     <div className="relative flex items-start justify-between">
-                      <span className="grid size-16 place-items-center rounded-2xl bg-linear-to-br from-brand to-brand-bright text-white shadow-[0_15px_35px_-10px_rgb(255_45_45/0.9)]">
+                      <span className="grid size-16 place-items-center rounded-2xl bg-linear-to-br from-brand to-brand-bright text-snow shadow-[0_15px_35px_-10px_rgb(255_45_45/0.9)]">
                         <Icon className="size-7" aria-hidden />
                       </span>
                       <span className="font-display text-[2rem] leading-none text-white/15">
@@ -83,11 +83,11 @@ export function ValuesSection() {
                   </div>
 
                   {/* Back */}
-                  <div className="backface-hidden absolute inset-0 flex flex-col justify-center gap-4 overflow-hidden rounded-[1.75rem] border border-white/10 bg-linear-to-br from-brand via-[#8a0120] to-ink-950 p-8 [transform:rotateY(180deg)]">
+                  <div className="backface-hidden absolute inset-0 flex flex-col justify-center gap-4 overflow-hidden rounded-[1.75rem] border border-white/10 bg-linear-to-br from-brand to-brand-bright p-8 [transform:rotateY(180deg)]">
                     <div aria-hidden className="absolute inset-0 bg-grid opacity-50" />
-                    <Icon className="relative size-8 text-gold" aria-hidden />
-                    <h3 className="relative text-[2rem] leading-none tracking-[0.03em] text-white">{title}</h3>
-                    <p className="relative text-body leading-relaxed text-white/90">{description}</p>
+                    <Icon className="relative size-8 text-[#ffe08a]" aria-hidden />
+                    <h3 className="relative text-[2rem] leading-none tracking-[0.03em] text-snow">{title}</h3>
+                    <p className="relative text-body leading-relaxed text-snow/90">{description}</p>
                   </div>
                 </div>
               </div>

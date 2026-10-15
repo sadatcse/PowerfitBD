@@ -70,11 +70,11 @@ export function DifferenceSection() {
                     sizes={IMAGE_SIZES.half}
                     className="object-cover"
                   />
-                  <div aria-hidden className="absolute inset-0 bg-linear-to-t from-ink-950/80 via-transparent to-transparent" />
+                  <div aria-hidden className="absolute inset-0 bg-linear-to-t from-wine/50 via-transparent to-transparent" />
                 </div>
                 {/* Floating inset photo */}
                 <TiltLayer depth={80} className="absolute -bottom-8 -left-4 w-[45%] sm:-left-8">
-                  <div className="relative aspect-square overflow-hidden rounded-2xl border-4 border-ink-950 shadow-2xl">
+                  <div className="relative aspect-square overflow-hidden rounded-2xl border-4 border-snow shadow-2xl">
                     <Image
                       src="/images/services/group-training.jpg"
                       alt=""
@@ -114,7 +114,7 @@ export function DifferenceSection() {
               {BENEFITS.map(({ Icon, title, description }) => (
                 <StaggerItem key={title} direction="left">
                   <div className="group flex gap-4 rounded-2xl border border-transparent p-4 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.03]">
-                    <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-brand-bright/30 bg-brand/15 text-brand-bright transition-all duration-300 group-hover:-rotate-6 group-hover:bg-linear-to-br group-hover:from-brand group-hover:to-brand-bright group-hover:text-white">
+                    <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-brand-bright/30 bg-brand/15 text-brand-bright transition-all duration-300 group-hover:-rotate-6 group-hover:bg-linear-to-br group-hover:from-brand group-hover:to-brand-bright group-hover:text-snow">
                       <Icon className="size-5" aria-hidden />
                     </span>
                     <div>
