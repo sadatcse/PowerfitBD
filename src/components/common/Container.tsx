@@ -1,4 +1,4 @@
-import { type ElementType, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { cn } from "@/utils/cn";
 
 /**
@@ -10,7 +10,8 @@ import { cn } from "@/utils/cn";
 interface ContainerProps {
   children: ReactNode;
   className?: string;
-  as?: ElementType;
+  /** Restricted to layout tags — a bare `ElementType` also admits three.js JSX elements. */
+  as?: "div" | "section" | "header" | "footer" | "main" | "article" | "nav";
   /** Drops the inner 80px inset for full-bleed rows (e.g. gallery grids). */
   flush?: boolean;
 }

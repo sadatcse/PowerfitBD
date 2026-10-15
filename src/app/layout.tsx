@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a192f",
+  themeColor: "#060d1a",
   width: "device-width",
   initialScale: 1,
 };
@@ -85,7 +85,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body className="flex min-h-full flex-col bg-ink-900">
+      <body className="flex min-h-full flex-col bg-ink-950">
         <AppProviders initialUser={user}>{children}</AppProviders>
       </body>
     </html>

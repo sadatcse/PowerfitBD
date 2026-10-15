@@ -1,6 +1,8 @@
 import { type Metadata } from "next";
 import { Container } from "@/components/common/Container";
+import { GlowBackdrop } from "@/components/common/GlowBackdrop";
 import { PageHeaderBanner } from "@/components/common/PageHeaderBanner";
+import { Accent } from "@/components/title/SectionTitle";
 import { TeamGrid } from "@/components/sections/team/TeamGrid";
 import { teamService } from "@/services/team.service";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -35,13 +37,18 @@ export default async function TeamPage() {
         imageSrc="/images/headers/team.jpg"
         imageAlt="Powerfit expert coaching team"
         eyebrow="The Roster"
-        title="Meet Our Expert Coaches"
+        title={
+          <>
+            Meet Our <Accent>Expert Coaches</Accent>
+          </>
+        }
         description="Every Multigym Premium coach is chosen for mastery in their discipline — and for the ability to get you there faster."
         align="center"
       />
 
-      <section className="bg-ink-900 py-16 md:py-24 lg:py-[7.5rem]">
-        <Container>
+      <section className="relative isolate overflow-hidden bg-ink-950 py-20 md:py-28 lg:py-32">
+        <GlowBackdrop className="-z-10" grid variant="corners" />
+        <Container flush>
           <TeamGrid members={members} />
         </Container>
       </section>

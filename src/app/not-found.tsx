@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import { Button } from "@/components/common/Button";
 import { Container } from "@/components/common/Container";
+import { GlowBackdrop } from "@/components/common/GlowBackdrop";
 import { ROUTES } from "@/constants/routes";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -12,10 +13,24 @@ export const metadata: Metadata = buildMetadata({
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-screen flex-1 items-center bg-ink-900">
+    <main className="relative isolate flex min-h-screen flex-1 items-center overflow-hidden bg-ink-950">
+      <GlowBackdrop className="-z-10" grid variant="center" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-[-50%] bottom-0 -z-10 h-1/2"
+      >
+        <div className="absolute inset-0 perspective-floor animate-grid-flow opacity-40" />
+      </div>
+
       <Container className="py-24 text-center">
-        <p className="eyebrow text-brand">Error 404</p>
-        <h1 className="mt-4 text-[3.5rem] leading-none text-white lg:text-display-1">
+        <p className="eyebrow text-brand-bright">Error 404</p>
+        <p
+          aria-hidden
+          className="mt-4 font-display text-[9rem] leading-[0.85] text-gradient sm:text-[14rem]"
+        >
+          404
+        </p>
+        <h1 className="text-[2.5rem] leading-none text-white lg:text-display-2">
           Off the Grid
         </h1>
         <p className="mx-auto mt-6 max-w-md text-body-lg text-sand">

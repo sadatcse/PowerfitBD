@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { LuSend } from "react-icons/lu";
 import { Button } from "@/components/common/Button";
 import { FormField } from "@/components/forms/FormField";
 import { Input } from "@/components/forms/Input";
@@ -137,8 +138,14 @@ export function ContactForm() {
         />
       </div>
 
-      <Button type="submit" size="lg" loading={isSubmitting} className="self-start">
-        Send Transmission
+      <Button
+        type="submit"
+        size="lg"
+        loading={isSubmitting}
+        className="self-start"
+        rightIcon={<LuSend className="size-4" aria-hidden />}
+      >
+        Send Message
       </Button>
     </form>
   );

@@ -1,4 +1,5 @@
-import { LuClock, LuMail, LuPhone, LuExternalLink } from "react-icons/lu";
+import { LuArrowUpRight, LuClock, LuMail, LuMapPin, LuNavigation, LuPhone } from "react-icons/lu";
+import { TiltCard } from "@/components/three/TiltCard";
 import { BRANCHES, OPERATING_HOURS, SITE } from "@/constants/site";
 
 const DIRECT = [
@@ -6,80 +7,75 @@ const DIRECT = [
   { Icon: LuMail, label: "Email", value: SITE.email, href: `mailto:${SITE.email}` },
 ] as const;
 
-/** Direct contact details + branch list shown beside the form (Figma 12:827). */
+/** Direct contact tiles, hours, and the branch list beside the form. */
 export function ContactInfo() {
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex flex-col gap-5">
-        {DIRECT.map(({ Icon, label, value, href }) => (
+    <div className="flex flex-col gap-4">
+      {DIRECT.map(({ Icon, label, value, href }) => (
+        <TiltCard key={label} max={8} className="rounded-2xl">
           <a
-            key={label}
             href={href}
-            className="group flex items-center gap-4 border border-line bg-ink-950 p-5 transition-colors hover:border-brand"
+            className="glass group flex items-center gap-4 rounded-2xl p-5 transition-colors hover:border-brand-bright/40"
           >
-            <span className="grid size-11 shrink-0 place-items-center border border-brand/40 bg-brand/10 text-brand">
+            <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-linear-to-br from-brand to-brand-bright text-white shadow-[0_10px_25px_-8px_rgb(255_45_45/0.8)]">
               <Icon className="size-5" aria-hidden />
             </span>
-            <div>
+            <div className="min-w-0 flex-1">
               <p className="text-body-xs font-bold tracking-[0.15em] text-muted uppercase">
                 {label}
               </p>
-              <p className="text-body font-bold text-white transition-colors group-hover:text-brand">
-                {value}
-              </p>
+              <p className="truncate text-body-lg font-bold text-white">{value}</p>
             </div>
+            <LuArrowUpRight className="size-5 text-muted transition-all group-hover:rotate-45 group-hover:text-brand-bright" aria-hidden />
           </a>
-        ))}
+        </TiltCard>
+      ))}
 
-        <div className="flex items-start gap-4 border border-line bg-ink-950 p-5">
-          <span className="grid size-11 shrink-0 place-items-center border border-brand/40 bg-brand/10 text-brand">
-            <LuClock className="size-5" aria-hidden />
-          </span>
-          <div>
-            <p className="text-body-xs font-bold tracking-[0.15em] text-muted uppercase">
-              Operating Hours
-            </p>
-            <dl className="mt-1 flex flex-col gap-1">
-              {OPERATING_HOURS.map((entry) => (
-                <div key={entry.days} className="flex items-baseline gap-2">
-                  <dt className="text-body-sm text-sand">{entry.days}:</dt>
-                  <dd className="text-body-sm font-bold text-white">
-                    {entry.time}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
+      <div className="rounded-2xl border border-gold/30 bg-linear-to-br from-gold/10 to-transparent p-5">
+        <p className="flex items-center gap-2 text-body-xs font-bold tracking-[0.15em] text-gold uppercase">
+          <LuClock className="size-4" aria-hidden />
+          Operating Hours
+        </p>
+        <dl className="mt-3 flex flex-col gap-2">
+          {OPERATING_HOURS.map((entry) => (
+            <div key={entry.days} className="flex items-baseline justify-between gap-2">
+              <dt className="text-body-sm text-sand">{entry.days}</dt>
+              <dd className="font-display text-[1.35rem] leading-none text-white">{entry.time}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
 
-      <div className="flex flex-col gap-4">
-        <h3 className="text-display-4 text-white">Our Locations</h3>
+      <div className="glass flex flex-col gap-1 rounded-2xl p-3">
+        <p className="px-3 pt-2 pb-1 text-body-xs font-bold tracking-[0.15em] text-muted uppercase">
+          Our Locations
+        </p>
         {BRANCHES.map((branch) => (
           <div
             key={branch.id}
-            className="group block border-l-2 border-line py-2 pl-4 transition-colors hover:border-gold"
+            className="group flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-white/5"
           >
-            <div className="flex items-center justify-between gap-2">
+            <LuMapPin className="mt-0.5 size-4 shrink-0 text-brand-bright" aria-hidden />
+            <div className="min-w-0 flex-1">
               <a
                 href={branch.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-body-sm font-bold text-white hover:text-gold transition-colors inline-flex items-center gap-1.5"
+                className="text-body-sm font-bold text-white transition-colors hover:text-gold"
               >
                 {branch.name}
-                <LuExternalLink className="size-3.5 text-gold" />
               </a>
-              <a
-                href={branch.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-body-xs text-brand hover:underline font-semibold"
-              >
-                Directions
-              </a>
+              <p className="mt-0.5 text-body-xs leading-relaxed text-sand/75">{branch.address}</p>
             </div>
-            <p className="text-body-xs text-sand mt-0.5">{branch.address}</p>
+            <a
+              href={branch.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Directions to ${branch.name}`}
+              className="grid size-9 shrink-0 place-items-center rounded-full bg-white/5 text-mist ring-1 ring-white/10 transition-all hover:bg-brand hover:text-white"
+            >
+              <LuNavigation className="size-3.5" aria-hidden />
+            </a>
           </div>
         ))}
       </div>

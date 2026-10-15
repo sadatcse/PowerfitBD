@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import { DifferenceSection } from "@/components/sections/home/DifferenceSection";
 import { FullServicesRosterSection } from "@/components/sections/home/FullServicesRosterSection";
 import { HomeHero } from "@/components/sections/home/HomeHero";
+import { HomeMarquee } from "@/components/sections/home/HomeMarquee";
 import { InBodySection } from "@/components/sections/home/InBodySection";
 import { LocationsSection } from "@/components/sections/home/LocationsSection";
 import { ServicesSection } from "@/components/sections/home/ServicesSection";
@@ -25,11 +26,12 @@ export default function HomePage() {
       />
 
       <HomeHero />
+      <HomeMarquee />
       <ServicesSection />
-      <FullServicesRosterSection />
       <InBodySection />
-      <LocationsSection />
+      <FullServicesRosterSection />
       <DifferenceSection />
+      <LocationsSection />
     </>
   );
 }

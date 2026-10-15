@@ -57,7 +57,7 @@ export function FormField({
 /** Shared control styling so inputs, textareas, and selects stay consistent. */
 export const controlClasses = (hasError?: boolean) =>
   cn(
-    "w-full border bg-ink-950 px-4 py-3 font-sans text-body text-mist",
+    "w-full rounded-xl border bg-ink-950/70 px-4 py-3.5 font-sans text-body text-mist",
     "placeholder:text-muted/70 transition-colors duration-200",
     "focus:outline-none focus:ring-1",
     hasError

@@ -1,8 +1,16 @@
 import Image from "next/image";
 import { FaCheck, FaGift, FaShieldHalved } from "react-icons/fa6";
-import { AnimationWrapper } from "@/components/common/AnimationWrapper";
+import { LuArrowRight } from "react-icons/lu";
+import {
+  AnimationWrapper,
+  StaggerGroup,
+  StaggerItem,
+} from "@/components/common/AnimationWrapper";
 import { Button } from "@/components/common/Button";
 import { Container } from "@/components/common/Container";
+import { GlowBackdrop } from "@/components/common/GlowBackdrop";
+import { TiltCard, TiltLayer } from "@/components/three/TiltCard";
+import { Accent, SectionTitle } from "@/components/title/SectionTitle";
 import { ROUTES } from "@/constants/routes";
 import { IMAGE_SIZES } from "@/utils/image";
 
@@ -15,106 +23,104 @@ const CORE_REPORT_METRICS = [
   "Fitness & Health Score",
 ] as const;
 
-/**
- * "FREE InBody Body Composition Test" — Home section.
- */
+/** "FREE InBody Body Composition Test" — machine on a 3D orbit stage. */
 export function InBodySection() {
   return (
-    <section className="relative overflow-hidden border-y border-line bg-ink-900 py-12 md:py-16 lg:py-20">
-      {/* Background ambient lighting */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 right-10 size-[500px] rounded-full bg-brand/10 blur-[130px]"
-      />
+    <section className="relative isolate overflow-hidden bg-ink-950 py-20 md:py-28 lg:py-36">
+      <GlowBackdrop className="-z-10" variant="left" />
+      <Container flush>
+        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          {/* 3D stage */}
+          <AnimationWrapper direction="scale">
+            <TiltCard max={10} lift={20} className="rounded-[2rem]">
+              <div className="relative aspect-square rounded-[2rem] border border-white/10 preserve-3d">
+                <div
+                  aria-hidden
+                  className="absolute inset-0 overflow-hidden rounded-[inherit] bg-[radial-gradient(circle_at_50%_40%,rgb(255_45_45/0.25),transparent_60%)]"
+                >
+                  <div className="absolute inset-0 bg-grid" />
 
-      <Container>
-        {/* Section Header */}
-        <div className="mx-auto max-w-3xl text-center mb-10 md:mb-12">
-          <div className="inline-flex items-center gap-2 border border-brand/30 bg-brand/10 px-4 py-1.5 text-body-xs font-bold tracking-[0.2em] text-brand-bright uppercase">
-            <FaGift className="size-3.5 text-brand-bright" aria-hidden />
-            <span>FREE InBody Body Composition Test</span>
-          </div>
-          <h2 className="mt-4 text-[2rem] leading-[1.1] tracking-[0.03em] text-white sm:text-4xl lg:text-display-2">
-            Know Your Body Before You Start Your Fitness Journey
-          </h2>
-          <p className="mt-4 text-body-lg text-sand text-balance-pretty">
-            Get Your Professional Body Analysis <span className="font-bold text-brand-bright">FREE</span> with Every New Admission.
-          </p>
-        </div>
+                  {/* Orbit rings */}
+                  <div className="absolute inset-[12%] animate-spin-slow rounded-full border border-dashed border-brand-bright/40" />
+                  <div className="absolute inset-[22%] animate-spin-slow rounded-full border border-gold/20 [animation-direction:reverse]" />
+                  <div className="absolute bottom-[14%] left-1/2 h-8 w-2/3 -translate-x-1/2 rounded-[50%] bg-brand/50 blur-2xl" />
+                </div>
 
-        {/* Compact Grid Layout */}
-        <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column — Scanner Image Card */}
-          <AnimationWrapper direction="left" className="lg:col-span-5">
-            <div className="group relative flex flex-col items-center justify-between overflow-hidden border border-line bg-ink-950 p-6 transition-colors duration-300 hover:border-brand/40 sm:p-8">
-              <div
-                aria-hidden
-                className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,_var(--tw-gradient-stops))] from-brand/15 via-transparent to-transparent opacity-70"
-              />
-
-              <div className="relative z-10 w-full flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 text-body-xs font-bold tracking-widest text-muted uppercase">
-                  <FaShieldHalved className="size-3 text-brand-bright" aria-hidden />
-                  Medical-Grade BIA
-                </span>
-                <span className="border border-brand/40 bg-brand/10 px-2.5 py-0.5 text-[11px] font-bold text-brand-bright uppercase">
-                  FREE Bonus
-                </span>
-              </div>
-
-              <div className="relative z-10 my-4 aspect-3/4 h-[360px] sm:h-[400px] w-full max-w-[320px]">
-                <Image
-                  src="/inbody/1.png"
-                  alt="InBody Body Composition Analyzer Machine"
-                  fill
-                  sizes={IMAGE_SIZES.half}
-                  className="object-contain transition-transform duration-700 group-hover:scale-105"
-                  priority
-                />
-              </div>
-
-              <div className="relative z-10 w-full text-center border-t border-line/60 pt-4">
-                <p className="font-display text-display-4 text-white uppercase">InBody Precision Analysis</p>
-                <p className="mt-1 text-body-xs text-sand">Worth ৳1,000 — Included FREE with Admission</p>
-              </div>
-            </div>
-          </AnimationWrapper>
-
-          {/* Right Column — Compact Content & Key Metrics */}
-          <AnimationWrapper direction="right" className="flex flex-col gap-6 lg:col-span-7">
-            <div className="border border-line bg-ink-950 p-5 sm:p-6">
-              <p className="text-body-md text-sand leading-relaxed">
-                Every new member receives a detailed body composition analysis upon admission. Unlike a standard scale, InBody tracks fat, muscle, and metabolic metrics to build your personalized workout & diet plan.
-              </p>
-            </div>
-
-            {/* Metrics Pills */}
-            <div className="border border-line bg-ink-950 p-5 sm:p-6">
-              <h3 className="text-body-xs font-bold tracking-[0.15em] text-mist uppercase mb-3">
-                Report Analysis Includes
-              </h3>
-              <div className="grid gap-2.5 sm:grid-cols-2">
-                {CORE_REPORT_METRICS.map((metric) => (
-                  <div
-                    key={metric}
-                    className="flex items-center gap-2.5 border border-line-soft bg-ink-900/80 px-3 py-2 text-body-xs text-sand"
-                  >
-                    <span className="grid size-4 shrink-0 place-items-center rounded-full bg-brand/20 text-brand-bright">
-                      <FaCheck className="size-2.5" aria-hidden />
-                    </span>
-                    <span className="font-medium text-mist">{metric}</span>
+                <TiltLayer depth={70} className="absolute inset-[10%]">
+                  <div className="relative size-full animate-float">
+                    <Image
+                      src="/inbody/1.png"
+                      alt="InBody Body Composition Analyzer Machine"
+                      fill
+                      sizes={IMAGE_SIZES.half}
+                      className="object-contain drop-shadow-[0_30px_40px_rgb(0_0_0/0.6)]"
+                    />
                   </div>
-                ))}
-              </div>
-            </div>
+                </TiltLayer>
 
-            {/* Action CTA */}
-            <div>
-              <Button href={ROUTES.pricing} size="md">
-                Claim Free InBody With Membership
-              </Button>
-            </div>
+                <TiltLayer depth={90} className="absolute top-5 left-5">
+                  <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-body-xs font-bold tracking-widest text-white uppercase glass">
+                    <FaShieldHalved
+                      className="size-3 text-brand-bright"
+                      aria-hidden
+                    />
+                    Medical-Grade BIA
+                  </span>
+                </TiltLayer>
+                <TiltLayer depth={100} className="absolute right-5 bottom-5">
+                  <div className="rounded-2xl bg-linear-to-br from-gold to-[#ffdd55] px-5 py-3 text-ink-950 shadow-[0_15px_40px_-10px_rgb(245_197_24/0.7)]">
+                    <p className="text-[0.65rem] font-bold tracking-[0.2em] uppercase">
+                      Worth ৳1,000
+                    </p>
+                    <p className="font-display text-[2rem] leading-none">
+                      Free
+                    </p>
+                  </div>
+                </TiltLayer>
+              </div>
+            </TiltCard>
           </AnimationWrapper>
+
+          {/* Copy */}
+          <div className="flex flex-col gap-8">
+            <AnimationWrapper direction="right">
+              <SectionTitle
+                eyebrow="Free InBody Body Composition Test"
+                eyebrowIcon={<FaGift className="size-3.5" aria-hidden />}
+                title={
+                  <>
+                    Know Your Body <Accent>Before You Start</Accent>
+                  </>
+                }
+                description="Every new member receives a detailed body composition analysis. Unlike a scale, InBody tracks fat, muscle, and metabolic metrics to build your personalized workout and diet plan."
+              />
+            </AnimationWrapper>
+
+            <StaggerGroup className="grid gap-3 sm:grid-cols-2" stagger={0.06}>
+              {CORE_REPORT_METRICS.map((metric) => (
+                <StaggerItem key={metric}>
+                  <div className="flex items-center gap-3 rounded-2xl px-4 py-3.5 glass transition-colors hover:border-brand-bright/40">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-white">
+                      <FaCheck className="size-3" aria-hidden />
+                    </span>
+                    <span className="text-body-sm font-semibold text-mist">
+                      {metric}
+                    </span>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+
+            <AnimationWrapper direction="up">
+              <Button
+                href={ROUTES.pricing}
+                size="lg"
+                rightIcon={<LuArrowRight className="size-4" aria-hidden />}
+              >
+                Claim Free InBody
+              </Button>
+            </AnimationWrapper>
+          </div>
         </div>
       </Container>
     </section>

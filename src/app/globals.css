@@ -72,6 +72,74 @@
   /* ---- Motion ---------------------------------------------------------- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-spin-slow: spin 18s linear infinite;
+  --animate-shine: shine 3.5s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+  --animate-grid-flow: grid-flow 1.6s linear infinite;
+  --animate-scroll-dot: scroll-dot 1.8s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(0, -14px, 0) rotate(1.5deg);
+    }
+  }
+  @keyframes shine {
+    0% {
+      transform: translateX(-120%) skewX(-20deg);
+    }
+    60%,
+    100% {
+      transform: translateX(220%) skewX(-20deg);
+    }
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.08);
+    }
+  }
+  @keyframes grid-flow {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 0 48px;
+    }
+  }
+  @keyframes scroll-dot {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(14px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 }
 
 /* ==========================================================================
@@ -95,7 +163,7 @@
   }
 
   body {
-    background-color: var(--color-ink-900);
+    background-color: var(--color-ink-950);
     color: var(--color-sand);
     font-family: var(--font-sans);
     font-size: var(--text-body);
@@ -188,4 +256,118 @@
 
 @utility text-balance-pretty {
   text-wrap: pretty;
+}
+
+/* ==========================================================================
+   3D / modern surface utilities
+   ========================================================================== */
+
+/* Frosted glass panel — the base surface for cards across the site. */
+@utility glass {
+  background: linear-gradient(
+    145deg,
+    rgb(255 255 255 / 0.06) 0%,
+    rgb(255 255 255 / 0.015) 100%
+  );
+  border: 1px solid rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@utility glass-strong {
+  background: linear-gradient(
+    145deg,
+    rgb(17 34 64 / 0.85) 0%,
+    rgb(6 13 26 / 0.85) 100%
+  );
+  border: 1px solid rgb(255 255 255 / 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Crimson → red → gold headline gradient. */
+@utility text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-bright) 0%,
+    #ff5a3c 45%,
+    var(--color-gold) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-silver {
+  background-image: linear-gradient(180deg, #ffffff 0%, #9fb0c9 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Hairline grid, faded toward the edges. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+
+/* Tilted grid "floor" used under page banners for depth. */
+@utility perspective-floor {
+  background-image:
+    linear-gradient(rgb(255 45 45 / 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 45 45 / 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(500px) rotateX(62deg);
+  transform-origin: center top;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 85%);
+}
+
+/* Gradient border that glows on hover — pair with `relative`. */
+@utility glow-border {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgb(255 45 45 / 0.7),
+      rgb(255 255 255 / 0.05) 40%,
+      rgb(245 197 24 / 0.5)
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.4s ease;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
+
+@layer base {
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
 }

@@ -1,9 +1,11 @@
+import { LuPlus } from "react-icons/lu";
 import { Container } from "@/components/common/Container";
-import { SectionTitle } from "@/components/title/SectionTitle";
 import {
+  AnimationWrapper,
   StaggerGroup,
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
+import { Accent, SectionTitle } from "@/components/title/SectionTitle";
 import { SITE } from "@/constants/site";
 
 const FAQS = [
@@ -33,29 +35,49 @@ const FAQS = [
   },
 ] as const;
 
-/** Short FAQ list beneath the pricing cards. */
+/**
+ * FAQ accordion built on native `<details>` — keyboard and screen-reader
+ * accessible with zero client JavaScript.
+ */
 export function PricingFaq() {
   return (
-    <section className="border-t border-line bg-ink-950 py-16 md:py-24 lg:py-[7.5rem]">
-      <Container>
-        <SectionTitle
-          eyebrow="Questions"
-          title="Membership FAQ"
-          align="center"
-          withRule
-          className="mx-auto"
-        />
+    <section className="relative bg-ink-900 py-20 md:py-28 lg:py-32">
+      <Container flush>
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <AnimationWrapper className="lg:col-span-5">
+            <SectionTitle
+              eyebrow="Questions"
+              title={
+                <>
+                  Membership <Accent>FAQ</Accent>
+                </>
+              }
+              description="Everything you need to know before your first session. Still unsure? Our team is a call away."
+              className="lg:sticky lg:top-32"
+            />
+          </AnimationWrapper>
 
-        <StaggerGroup className="mx-auto mt-12 grid max-w-3xl gap-6 lg:mt-16">
-          {FAQS.map((faq) => (
-            <StaggerItem key={faq.question}>
-              <div className="border border-line bg-ink-900 p-6 lg:p-8">
-                <h3 className="text-display-4 text-white">{faq.question}</h3>
-                <p className="mt-2 text-body-sm text-sand">{faq.answer}</p>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+          <StaggerGroup className="flex flex-col gap-4 lg:col-span-7">
+            {FAQS.map((faq, i) => (
+              <StaggerItem key={faq.question}>
+                <details
+                  className="group glass rounded-2xl transition-colors open:border-brand-bright/40"
+                  open={i === 0}
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 [&::-webkit-details-marker]:hidden">
+                    <span className="font-display text-[1.5rem] leading-tight tracking-[0.03em] text-white uppercase">
+                      {faq.question}
+                    </span>
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition-all duration-300 group-open:rotate-45 group-open:border-brand-bright group-open:bg-brand-bright">
+                      <LuPlus className="size-4" aria-hidden />
+                    </span>
+                  </summary>
+                  <p className="px-6 pb-6 text-body leading-relaxed text-sand/90">{faq.answer}</p>
+                </details>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </div>
       </Container>
     </section>
   );

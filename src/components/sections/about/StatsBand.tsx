@@ -3,31 +3,38 @@ import {
   StaggerGroup,
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
+import { CountUp } from "@/components/common/CountUp";
+import { TiltCard } from "@/components/three/TiltCard";
 
 const STATS = [
-  { value: "3", label: "Premier Locations" },
-  { value: "300+", label: "Fitness Equipment" },
-  { value: "15+", label: "Expert Coaches" },
-  { value: "5K+", label: "Members Transformed" },
+  { to: 3, suffix: "", label: "Premier Locations" },
+  { to: 300, suffix: "+", label: "Fitness Equipment" },
+  { to: 15, suffix: "+", label: "Expert Coaches" },
+  { to: 5000, suffix: "K+", divisor: 1000, label: "Members Transformed" },
 ] as const;
 
-/** Proof-point band — reinforces scale after the brand story. */
+/** Proof-point band — animated counters on tilting glass tiles. */
 export function StatsBand() {
   return (
-    <section className="bg-ink-900 pb-16 md:pb-24 lg:pb-[7.5rem]">
-      <Container>
-        <StaggerGroup className="grid grid-cols-2 gap-6 border border-line bg-ink-950 p-8 sm:p-12 lg:grid-cols-4">
+    <section className="relative bg-ink-900 py-20 md:py-24">
+      <Container flush>
+        <StaggerGroup className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
           {STATS.map((stat) => (
-            <StaggerItem
-              key={stat.label}
-              className="flex flex-col items-center gap-2 text-center"
-            >
-              <span className="font-display text-display-1 text-brand">
-                {stat.value}
-              </span>
-              <span className="text-body-xs font-bold tracking-[0.2em] text-mist uppercase">
-                {stat.label}
-              </span>
+            <StaggerItem key={stat.label}>
+              <TiltCard max={14} className="rounded-[1.75rem]">
+                <div className="glass glow-border relative flex h-full flex-col items-center gap-3 overflow-hidden rounded-[1.75rem] px-4 py-10 text-center">
+                  <div aria-hidden className="absolute -bottom-16 left-1/2 size-40 -translate-x-1/2 rounded-full bg-brand/30 blur-3xl" />
+                  <CountUp
+                    to={stat.to}
+                    suffix={stat.suffix}
+                    divisor={"divisor" in stat ? stat.divisor : 1}
+                    className="relative font-display text-[3.5rem] leading-none text-gradient sm:text-[4.5rem]"
+                  />
+                  <span className="relative text-body-xs font-bold tracking-[0.2em] text-mist uppercase">
+                    {stat.label}
+                  </span>
+                </div>
+              </TiltCard>
             </StaggerItem>
           ))}
         </StaggerGroup>

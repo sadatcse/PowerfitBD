@@ -1,10 +1,15 @@
 import Image from "next/image";
 import { FaUserCheck } from "react-icons/fa6";
+import { LuArrowUpRight } from "react-icons/lu";
 import { Container } from "@/components/common/Container";
 import {
+  AnimationWrapper,
   StaggerGroup,
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
+import { GlowBackdrop } from "@/components/common/GlowBackdrop";
+import { TiltCard, TiltLayer } from "@/components/three/TiltCard";
+import { Accent, SectionTitle } from "@/components/title/SectionTitle";
 import { IMAGE_SIZES } from "@/utils/image";
 import { cn } from "@/utils/cn";
 
@@ -56,29 +61,32 @@ const SERVICES: readonly ServiceCard[] = [
   },
 ];
 
-/**
- * "Core Training Services" bento grid section with bg-ink-900.
- */
+/** "Core Training & Programs" — 3D tilt bento grid. */
 export function ServicesSection() {
   return (
-    <section className="bg-ink-900 py-16 md:py-24 lg:py-[7.5rem]">
-      <Container>
-        {/* Section Header styled identically to InBody & Full Services sections */}
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 border border-brand/30 bg-brand/10 px-4 py-1.5 text-body-xs font-bold tracking-[0.2em] text-brand-bright uppercase">
-            <FaUserCheck className="size-3.5 text-brand-bright" aria-hidden />
-            <span>Fitness For Everyone</span>
+    <section className="relative isolate overflow-hidden bg-ink-950 py-20 md:py-28 lg:py-36">
+      <GlowBackdrop className="-z-10" variant="right" />
+      <Container flush>
+        <AnimationWrapper>
+          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
+            <SectionTitle
+              eyebrow="Fitness For Everyone"
+              eyebrowIcon={<FaUserCheck className="size-3.5" aria-hidden />}
+              title={
+                <>
+                  Core Training <Accent>&amp; Programs</Accent>
+                </>
+              }
+            />
+            <p className="max-w-md text-body-lg text-balance-pretty text-sand/80">
+              From beginner habit building to elite bodybuilding — specialized
+              programs for every ambition.
+            </p>
           </div>
-          <h2 className="mt-4 text-[2rem] leading-[1.1] tracking-[0.03em] text-white sm:text-4xl lg:text-display-2">
-            Core Training & Programs
-          </h2>
-          <p className="mt-4 text-body-lg text-sand text-balance-pretty">
-            From beginner habit building to elite body building, <span className="font-bold text-brand-bright">Powerfit</span> provides specialized programs for every ambition.
-          </p>
-        </div>
+        </AnimationWrapper>
 
-        <StaggerGroup className="mt-12 grid gap-6 md:grid-cols-6 lg:mt-16">
-          {SERVICES.map((service) => (
+        <StaggerGroup className="mt-14 grid gap-6 md:grid-cols-6 lg:mt-20">
+          {SERVICES.map((service, index) => (
             <StaggerItem
               key={service.id}
               className={cn(
@@ -86,27 +94,53 @@ export function ServicesSection() {
                 service.span === "wide" ? "lg:col-span-4" : "lg:col-span-2",
               )}
             >
-              <article className="group relative flex h-full min-h-[18rem] flex-col justify-end overflow-hidden border border-line transition-colors duration-300 hover:border-brand/40">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  sizes={IMAGE_SIZES.half}
-                  className="object-cover transition-transform duration-700 ease-(--ease-out-expo) group-hover:scale-105"
-                />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/70 to-ink-950/10"
-                />
+              <TiltCard max={7} className="rounded-[1.75rem]">
+                <article className="group relative flex h-full min-h-[22rem] flex-col justify-end rounded-[1.75rem] border border-white/10 preserve-3d lg:min-h-[26rem]">
+                  <div className="absolute inset-0 overflow-hidden rounded-[inherit]">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes={IMAGE_SIZES.half}
+                      className="object-cover transition-transform duration-[1.2s] ease-(--ease-out-expo) group-hover:scale-110"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/60 to-transparent"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-linear-to-tr from-brand/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    />
+                  </div>
 
-                <div className="relative z-10 flex flex-col gap-2 p-6 lg:p-8">
-                  <p className="eyebrow text-brand-bright">{service.eyebrow}</p>
-                  <h3 className="text-display-3 text-white">{service.title}</h3>
-                  <p className="max-w-sm text-body-sm text-sand">
-                    {service.description}
-                  </p>
-                </div>
-              </article>
+                  <TiltLayer depth={50} className="absolute top-6 left-6">
+                    <span className="font-display text-[3.5rem] leading-none text-white/15 [-webkit-text-stroke:1px_rgb(255_255_255/0.4)]">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </TiltLayer>
+                  <TiltLayer depth={60} className="absolute top-6 right-6">
+                    <span className="grid size-12 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition-all duration-300 group-hover:rotate-45 group-hover:bg-brand-bright">
+                      <LuArrowUpRight className="size-5" aria-hidden />
+                    </span>
+                  </TiltLayer>
+
+                  <TiltLayer
+                    depth={40}
+                    className="relative z-10 flex flex-col gap-3 p-7 lg:p-9"
+                  >
+                    <p className="eyebrow text-brand-bright">
+                      {service.eyebrow}
+                    </p>
+                    <h3 className="text-[2rem] leading-none tracking-[0.03em] text-white lg:text-[2.5rem]">
+                      {service.title}
+                    </h3>
+                    <p className="max-w-md text-body-sm text-sand/90">
+                      {service.description}
+                    </p>
+                  </TiltLayer>
+                </article>
+              </TiltCard>
             </StaggerItem>
           ))}
         </StaggerGroup>

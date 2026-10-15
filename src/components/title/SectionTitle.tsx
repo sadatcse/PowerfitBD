@@ -1,14 +1,17 @@
 import { type ReactNode } from "react";
+import { Pill } from "@/components/common/Pill";
 import { cn } from "@/utils/cn";
 
 interface SectionTitleProps {
   /** Small tracked label above the heading, e.g. "THE VISIONARY". */
   eyebrow?: string;
+  /** Optional icon inside the eyebrow pill; defaults to a pulsing dot. */
+  eyebrowIcon?: ReactNode;
   title: ReactNode;
   description?: ReactNode;
   /** Centred headings are used on Team, Contact, and Equipment. */
   align?: "left" | "center";
-  /** The short crimson rule under centred headings in the design. */
+  /** The short gradient rule under the heading. */
   withRule?: boolean;
   className?: string;
   /** Heading level — keeps one `h1` per page for accessibility and SEO. */
@@ -16,11 +19,13 @@ interface SectionTitleProps {
 }
 
 /**
- * The recurring section heading block: eyebrow, Bebas display heading,
- * optional rule, and supporting copy.
+ * The recurring section heading block: pill eyebrow, Bebas display heading,
+ * optional gradient rule, and supporting copy. Wrap a word of the title in
+ * `<Accent>` to give it the brand gradient.
  */
 export function SectionTitle({
   eyebrow,
+  eyebrowIcon,
   title,
   description,
   align = "left",
@@ -33,21 +38,19 @@ export function SectionTitle({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4",
+        "flex flex-col gap-5",
         centered && "items-center text-center",
         className,
       )}
     >
-      {eyebrow ? (
-        <span className="eyebrow text-brand">{eyebrow}</span>
-      ) : null}
+      {eyebrow ? <Pill icon={eyebrowIcon}>{eyebrow}</Pill> : null}
 
       <Heading
         className={cn(
-          "text-balance-pretty",
+          "text-balance-pretty text-gradient-silver",
           Heading === "h1"
-            ? "text-[2.75rem] leading-[1.05] tracking-[0.02em] sm:text-6xl lg:text-display-1"
-            : "text-[2rem] leading-[1.1] tracking-[0.03em] sm:text-4xl lg:text-display-2",
+            ? "text-[3rem] leading-[0.98] tracking-[0.02em] sm:text-7xl lg:text-[6rem]"
+            : "text-[2.25rem] leading-[1.02] tracking-[0.03em] sm:text-5xl lg:text-[4rem]",
         )}
       >
         {title}
@@ -56,14 +59,17 @@ export function SectionTitle({
       {withRule ? (
         <span
           aria-hidden
-          className={cn("block h-0.5 w-16 bg-brand", centered && "mx-auto")}
+          className={cn(
+            "block h-1 w-20 rounded-full bg-linear-to-r from-brand-bright to-gold",
+            centered && "mx-auto",
+          )}
         />
       ) : null}
 
       {description ? (
         <p
           className={cn(
-            "max-w-xl text-body-lg text-sand text-balance-pretty",
+            "max-w-2xl text-body-lg text-sand/90 text-balance-pretty",
             centered && "mx-auto",
           )}
         >
@@ -72,4 +78,9 @@ export function SectionTitle({
       ) : null}
     </div>
   );
+}
+
+/** Gradient-highlighted word(s) inside a heading. */
+export function Accent({ children }: { children: ReactNode }) {
+  return <span className="text-gradient">{children}</span>;
 }

@@ -1,119 +1,116 @@
 import Image from "next/image";
-import { FaGlobe, FaMapLocationDot } from "react-icons/fa6";
+import { FaMapLocationDot } from "react-icons/fa6";
+import { LuArrowUpRight, LuGlobe, LuMapPin, LuNavigation, LuPhone } from "react-icons/lu";
 import { Container } from "@/components/common/Container";
 import {
+  AnimationWrapper,
   StaggerGroup,
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
+import { GlowBackdrop } from "@/components/common/GlowBackdrop";
+import { TiltCard, TiltLayer } from "@/components/three/TiltCard";
+import { Accent, SectionTitle } from "@/components/title/SectionTitle";
 import { BRANCHES } from "@/constants/site";
 import { IMAGE_SIZES } from "@/utils/image";
 
-/**
- * "Premier Locations" — the three branch cards on deep navy band.
- */
+/** "Our Locations" — three branch cards with 3D tilt and floating badges. */
 export function LocationsSection() {
   return (
-    <section className="border-y border-line bg-ink-950 py-16 md:py-24 lg:py-[7.5rem]">
-      <Container>
-        {/* Section Header styled identically to InBody & Full Services sections */}
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 border border-brand/30 bg-brand/10 px-4 py-1.5 text-body-xs font-bold tracking-[0.2em] text-brand-bright uppercase">
-            <FaMapLocationDot className="size-3.5 text-brand-bright" aria-hidden />
-            <span>Premier Athletic Facilities</span>
-          </div>
-          <h2 className="mt-4 text-[2rem] leading-[1.1] tracking-[0.03em] text-white sm:text-4xl lg:text-display-2">
-            Our Locations
-          </h2>
-          <p className="mt-4 text-body-lg text-sand text-balance-pretty">
-            Find your nearest <span className="font-bold text-brand-bright">Multigym Premium</span> and join a community of high-performers.
-          </p>
-        </div>
+    <section className="relative isolate overflow-hidden bg-ink-900 py-20 md:py-28 lg:py-36">
+      <GlowBackdrop className="-z-10" grid variant="corners" />
+      <Container flush>
+        <AnimationWrapper>
+          <SectionTitle
+            eyebrow="Premier Athletic Facilities"
+            eyebrowIcon={<FaMapLocationDot className="size-3.5" aria-hidden />}
+            title={
+              <>
+                Our <Accent>Locations</Accent>
+              </>
+            }
+            description="Find your nearest Multigym Premium and join a community of high-performers. Members can train at any branch."
+            align="center"
+            className="mx-auto"
+          />
+        </AnimationWrapper>
 
         <StaggerGroup
           id="branches"
-          className="mt-12 grid gap-8 md:grid-cols-2 lg:mt-16 lg:grid-cols-3"
+          className="mt-14 grid gap-8 md:grid-cols-2 lg:mt-20 lg:grid-cols-3"
         >
           {BRANCHES.map((branch, index) => (
-            <StaggerItem key={branch.id}>
-              <article className="group flex h-full flex-col overflow-hidden border border-line bg-ink-900 transition-all duration-300 hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5">
-                <a
-                  href={branch.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative aspect-16/10 w-full overflow-hidden block"
-                >
-                  <Image
-                    src={branch.image}
-                    alt={branch.name}
-                    fill
-                    sizes={IMAGE_SIZES.third}
-                    className="object-cover transition-transform duration-700 ease-(--ease-out-expo) group-hover:scale-105"
-                  />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 bg-linear-to-t from-ink-900 via-ink-900/30 to-transparent"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <span
-                      aria-hidden
-                      className="font-display text-display-4 text-white/80 drop-shadow-xs"
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                </a>
-
-                <div className="flex flex-1 flex-col gap-4 p-8">
+            <StaggerItem key={branch.id} className="h-full">
+              <TiltCard max={8} className="rounded-[1.75rem]">
+                <article className="group preserve-3d relative flex h-full flex-col rounded-[1.75rem]">
+                  <div aria-hidden className="glass absolute inset-0 rounded-[inherit]" />
                   <a
                     href={branch.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 group/title"
+                    className="relative m-3 block aspect-16/11 overflow-hidden rounded-[1.25rem]"
                   >
                     <Image
-                      src="/images/home/pin-icon.svg"
-                      alt=""
-                      width={24}
-                      height={30}
-                      className="h-[24px] w-5 shrink-0"
+                      src={branch.image}
+                      alt={branch.name}
+                      fill
+                      sizes={IMAGE_SIZES.third}
+                      className="object-cover transition-transform duration-[1.2s] ease-(--ease-out-expo) group-hover:scale-110"
                     />
-                    <h3 className="text-display-4 text-white transition-colors group-hover/title:text-gold">
-                      {branch.name}
-                    </h3>
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 bg-linear-to-t from-ink-950/90 via-ink-950/10 to-transparent"
+                    />
+                    <span
+                      aria-hidden
+                      className="absolute bottom-3 left-4 font-display text-[3.5rem] leading-none text-transparent [-webkit-text-stroke:1px_rgb(255_255_255/0.7)]"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </a>
 
-                  <p className="text-body-sm text-sand">{branch.address}</p>
-                  <p className="text-body-sm text-sand">Phone: {branch.phone}</p>
+                  <TiltLayer depth={60} className="absolute top-7 right-7">
+                    <span className="grid size-11 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-white shadow-[0_10px_30px_-5px_rgb(255_45_45/0.8)]">
+                      <LuMapPin className="size-5" aria-hidden />
+                    </span>
+                  </TiltLayer>
 
-                  <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-line/50">
+                  <TiltLayer depth={30} className="flex flex-1 flex-col gap-4 px-6 pt-3 pb-6">
+                    <h3 className="text-[1.75rem] leading-none tracking-[0.03em] text-white transition-colors group-hover:text-gold">
+                      {branch.name}
+                    </h3>
+                    <p className="text-body-sm leading-relaxed text-sand/80">{branch.address}</p>
                     <a
-                      href={branch.mapUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-body-sm font-bold text-sand transition-colors hover:text-white"
+                      href={`tel:${branch.phone.replace(/[\s-]/g, "")}`}
+                      className="inline-flex items-center gap-2 text-body-sm font-semibold text-white transition-colors hover:text-brand-bright"
                     >
-                      Get Directions
-                      <Image
-                        src="/images/home/arrow-icon.svg"
-                        alt=""
-                        width={10}
-                        height={10}
-                        className="size-[9.333px]"
-                      />
+                      <LuPhone className="size-4 text-brand-bright" aria-hidden />
+                      {branch.phone}
                     </a>
 
-                    <a
-                      href={branch.websiteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg bg-gold/10 px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-gold border border-gold/30 transition-all hover:bg-gold hover:text-ink-950"
-                    >
-                      <FaGlobe className="size-3.5" />
-                      Visit Website
-                    </a>
-                  </div>
-                </div>
-              </article>
+                    <div className="mt-auto flex flex-wrap items-center gap-2 pt-4">
+                      <a
+                        href={branch.mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2.5 text-body-xs font-bold tracking-wider text-white uppercase ring-1 ring-white/10 transition-all hover:bg-brand hover:ring-brand-bright"
+                      >
+                        <LuNavigation className="size-3.5" aria-hidden />
+                        Directions
+                      </a>
+                      <a
+                        href={branch.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-gold/10 px-4 py-2.5 text-body-xs font-bold tracking-wider text-gold uppercase ring-1 ring-gold/30 transition-all hover:bg-gold hover:text-ink-950"
+                      >
+                        <LuGlobe className="size-3.5" aria-hidden />
+                        Website
+                        <LuArrowUpRight className="size-3.5" aria-hidden />
+                      </a>
+                    </div>
+                  </TiltLayer>
+                </article>
+              </TiltCard>
             </StaggerItem>
           ))}
         </StaggerGroup>

@@ -1,11 +1,11 @@
 "use client";
 
+import { motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { LuMenu } from "react-icons/lu";
+import { LuArrowUpRight, LuMenu } from "react-icons/lu";
 import { Button } from "../common/Button";
-import { Container } from "../common/Container";
 import { Logo } from "./Logo";
 import { MobileNav } from "./MobileNav";
 import { MAIN_NAV } from "@/constants/site";
@@ -13,59 +13,65 @@ import { ROUTES } from "@/constants/routes";
 import { cn } from "@/utils/cn";
 
 /**
- * Top navigation — 80px tall, crimson underline on the active link, and a
- * solid "JOIN NOW" CTA, per the Figma top bar.
- *
- * `transparent` renders it over a hero image (Home); it turns solid once the
- * page scrolls so the links stay legible.
+ * Floating glass navigation. Sits transparent over each page hero, then
+ * condenses into a frosted pill once the page scrolls. The active link is
+ * marked by a sliding highlight shared across links via `layoutId`.
  */
-export function Header({ transparent = false }: { transparent?: boolean }) {
+export function Header() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30 });
 
   useEffect(() => {
-    if (!transparent) return;
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [transparent]);
+  }, []);
 
-  const solid = !transparent || scrolled;
+  const isActive = (href: string) =>
+    href === ROUTES.home ? pathname === href : pathname.startsWith(href);
 
   return (
     <>
-      <header
-        className={cn(
-          "top-0 z-80 w-full transition-colors duration-300",
-          transparent ? "fixed" : "sticky",
-          solid
-            ? "border-b border-line bg-ink-900/95 backdrop-blur-sm"
-            : "border-b border-transparent bg-transparent",
-        )}
-      >
-        <Container className="flex h-20 items-center justify-between gap-6">
+      <motion.div
+        aria-hidden
+        style={{ scaleX: progress }}
+        className="fixed inset-x-0 top-0 z-90 h-0.5 origin-left bg-linear-to-r from-brand via-brand-bright to-gold"
+      />
+
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-80 px-3 pt-3 sm:px-5 sm:pt-4">
+        <div
+          className={cn(
+            "pointer-events-auto mx-auto flex max-w-[78rem] items-center justify-between gap-4 rounded-full px-4 transition-all duration-500 ease-(--ease-out-expo) sm:px-6",
+            scrolled
+              ? "glass-strong h-16 shadow-[0_20px_50px_-20px_rgb(0_0_0/0.8)]"
+              : "h-20 border border-transparent bg-transparent",
+          )}
+        >
           <Logo showWordmark />
 
           <nav aria-label="Main navigation" className="hidden lg:block">
-            <ul className="flex items-center gap-8">
+            <ul className="flex items-center gap-1 rounded-full border border-white/5 bg-white/[0.03] p-1">
               {MAIN_NAV.map((link) => {
-                const active =
-                  link.href === ROUTES.home
-                    ? pathname === link.href
-                    : pathname.startsWith(link.href);
-
+                const active = isActive(link.href);
                 return (
-                  <li key={link.href}>
+                  <li key={link.href} className="relative">
+                    {active ? (
+                      <motion.span
+                        layoutId="nav-active"
+                        transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                        className="absolute inset-0 rounded-full bg-linear-to-r from-brand to-brand-bright shadow-[0_6px_20px_-6px_rgb(255_45_45/0.7)]"
+                      />
+                    ) : null}
                     <Link
                       href={link.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "inline-block border-b-2 pb-1.5 font-nav text-body-sm font-bold tracking-[0.02em] uppercase transition-colors duration-200",
-                        active
-                          ? "border-brand text-brand"
-                          : "border-transparent text-mist hover:text-brand",
+                        "relative block rounded-full px-4 py-2 font-nav text-body-sm font-semibold tracking-[0.06em] uppercase transition-colors duration-200",
+                        active ? "text-white" : "text-mist/80 hover:text-white",
                       )}
                     >
                       {link.label}
@@ -76,8 +82,13 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3">
-            <Button href={ROUTES.pricing} size="sm" className="hidden sm:inline-flex">
+          <div className="flex items-center gap-2">
+            <Button
+              href={ROUTES.pricing}
+              size="sm"
+              className="hidden sm:inline-flex"
+              rightIcon={<LuArrowUpRight className="size-4" aria-hidden />}
+            >
               Join Now
             </Button>
 
@@ -86,12 +97,12 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               onClick={() => setMenuOpen(true)}
               aria-label="Open navigation"
               aria-expanded={menuOpen}
-              className="grid size-10 place-items-center text-mist transition-colors hover:text-brand lg:hidden"
+              className="grid size-11 place-items-center rounded-full border border-white/10 bg-white/5 text-mist backdrop-blur-md transition-colors hover:border-brand-bright hover:text-white lg:hidden"
             >
-              <LuMenu className="size-6" aria-hidden />
+              <LuMenu className="size-5" aria-hidden />
             </button>
           </div>
-        </Container>
+        </div>
       </header>
 
       <MobileNav
