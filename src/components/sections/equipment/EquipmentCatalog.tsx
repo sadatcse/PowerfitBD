@@ -10,6 +10,7 @@ import {
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
 import { Button } from "@/components/common/Button";
+import { SitePortal } from "@/components/common/SitePortal";
 import { TiltCard, TiltLayer } from "@/components/three/TiltCard";
 import { EQUIPMENT_LIST, type EquipmentItem } from "@/constants/equipment";
 import { ROUTES } from "@/constants/routes";
@@ -233,111 +234,113 @@ export function EquipmentCatalog() {
       )}
 
       {/* Equipment detail modal */}
-      <AnimatePresence>
-        {activeModalItem && (
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
-            onClick={() => setActiveModalItem(null)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-100 flex items-center justify-center bg-ink-950/85 p-4 backdrop-blur-xl [perspective:1400px]"
-          >
+      <SitePortal>
+        <AnimatePresence>
+          {activeModalItem && (
             <motion.div
-              onClick={(event) => event.stopPropagation()}
-              initial={{ opacity: 0, rotateX: 18, y: 40, scale: 0.94 }}
-              animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
-              exit={{ opacity: 0, rotateX: -12, y: 30, scale: 0.95 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="glass-strong scrollbar-slim relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] p-6 shadow-[0_40px_100px_-30px_rgb(255_45_45/0.4)] md:p-8"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
+              onClick={() => setActiveModalItem(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-100 flex items-center justify-center bg-ink-950/85 p-4 backdrop-blur-xl [perspective:1400px]"
             >
-              <button
-                type="button"
-                onClick={() => setActiveModalItem(null)}
-                aria-label="Close"
-                className="absolute top-4 right-4 z-20 grid size-11 place-items-center rounded-full border border-white/10 bg-ink-950 text-mist transition-colors hover:border-brand-bright hover:bg-brand hover:text-snow"
+              <motion.div
+                onClick={(event) => event.stopPropagation()}
+                initial={{ opacity: 0, rotateX: 18, y: 40, scale: 0.94 }}
+                animate={{ opacity: 1, rotateX: 0, y: 0, scale: 1 }}
+                exit={{ opacity: 0, rotateX: -12, y: 30, scale: 0.95 }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="glass-strong scrollbar-slim relative max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] p-6 shadow-[0_40px_100px_-30px_rgb(255_45_45/0.4)] md:p-8"
               >
-                <FaXmark className="size-5" />
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveModalItem(null)}
+                  aria-label="Close"
+                  className="absolute top-4 right-4 z-20 grid size-11 place-items-center rounded-full border border-white/10 bg-ink-950 text-mist transition-colors hover:border-brand-bright hover:bg-brand hover:text-snow"
+                >
+                  <FaXmark className="size-5" />
+                </button>
 
-              <div className="grid gap-8 md:grid-cols-12 md:items-start">
-                <div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] border border-line bg-snow md:col-span-5">
-                  <Image
-                    src={activeModalItem.image}
-                    alt={activeModalItem.title}
-                    fill
-                    sizes={IMAGE_SIZES.half}
-                    className="object-contain p-4"
-                  />
-                  <span className="absolute top-3 left-3 rounded-full bg-ink-950 px-3 py-1 text-[0.7rem] font-bold text-brand-bright uppercase">
-                    {activeModalItem.model}
-                  </span>
-                </div>
+                <div className="grid gap-8 md:grid-cols-12 md:items-start">
+                  <div className="relative aspect-square w-full overflow-hidden rounded-[1.5rem] border border-line bg-snow md:col-span-5">
+                    <Image
+                      src={activeModalItem.image}
+                      alt={activeModalItem.title}
+                      fill
+                      sizes={IMAGE_SIZES.half}
+                      className="object-contain p-4"
+                    />
+                    <span className="absolute top-3 left-3 rounded-full bg-ink-950 px-3 py-1 text-[0.7rem] font-bold text-brand-bright uppercase">
+                      {activeModalItem.model}
+                    </span>
+                  </div>
 
-                <div className="flex flex-col gap-5 md:col-span-7">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 text-body-xs">
-                      <span className="rounded-full bg-brand/20 px-3 py-1 font-bold text-brand-bright uppercase">
-                        {activeModalItem.brand}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-sand">
-                        <LuLayers className="size-3" aria-hidden />
-                        {activeModalItem.categoryLabel}
-                      </span>
-                      <span className="rounded-full bg-gold/10 px-3 py-1 text-gold">
-                        {activeModalItem.type}
-                      </span>
+                  <div className="flex flex-col gap-5 md:col-span-7">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2 text-body-xs">
+                        <span className="rounded-full bg-brand/20 px-3 py-1 font-bold text-brand-bright uppercase">
+                          {activeModalItem.brand}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-sand">
+                          <LuLayers className="size-3" aria-hidden />
+                          {activeModalItem.categoryLabel}
+                        </span>
+                        <span className="rounded-full bg-gold/10 px-3 py-1 text-gold">
+                          {activeModalItem.type}
+                        </span>
+                      </div>
+                      <h2
+                        id="modal-title"
+                        className="mt-4 text-[2rem] leading-none tracking-[0.03em] text-white"
+                      >
+                        {activeModalItem.title}
+                      </h2>
                     </div>
-                    <h2
-                      id="modal-title"
-                      className="mt-4 text-[2rem] leading-none tracking-[0.03em] text-white"
-                    >
-                      {activeModalItem.title}
-                    </h2>
-                  </div>
 
-                  <p className="text-body-sm leading-relaxed text-sand/90">
-                    {activeModalItem.description}
-                  </p>
+                    <p className="text-body-sm leading-relaxed text-sand/90">
+                      {activeModalItem.description}
+                    </p>
 
-                  {activeModalItem.features && (
-                    <ul className="grid gap-2 sm:grid-cols-2">
-                      {activeModalItem.features.map((feat) => (
-                        <li
-                          key={feat}
-                          className="flex items-center gap-2.5 rounded-xl bg-white/5 px-3 py-2.5 text-body-xs font-semibold text-mist"
-                        >
-                          <span className="grid size-5 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-snow">
-                            <FaCheck className="size-2.5" />
-                          </span>
-                          {feat}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                    {activeModalItem.features && (
+                      <ul className="grid gap-2 sm:grid-cols-2">
+                        {activeModalItem.features.map((feat) => (
+                          <li
+                            key={feat}
+                            className="flex items-center gap-2.5 rounded-xl bg-white/5 px-3 py-2.5 text-body-xs font-semibold text-mist"
+                          >
+                            <span className="grid size-5 shrink-0 place-items-center rounded-full bg-linear-to-br from-brand to-brand-bright text-snow">
+                              <FaCheck className="size-2.5" />
+                            </span>
+                            {feat}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
 
-                  <div className="mt-2 flex flex-col gap-3 sm:flex-row">
-                    <Button href={ROUTES.contact} size="md" fullWidth>
-                      Inquire For Training
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="md"
-                      fullWidth
-                      onClick={() => setActiveModalItem(null)}
-                    >
-                      Close
-                    </Button>
+                    <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+                      <Button href={ROUTES.contact} size="md" fullWidth>
+                        Inquire For Training
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="md"
+                        fullWidth
+                        onClick={() => setActiveModalItem(null)}
+                      >
+                        Close
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </SitePortal>
     </div>
   );
 }

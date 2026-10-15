@@ -9,6 +9,7 @@ import {
   StaggerItem,
 } from "@/components/common/AnimationWrapper";
 import { ImageWithSkeleton } from "@/components/common/ImageWithSkeleton";
+import { SitePortal } from "@/components/common/SitePortal";
 import { TiltCard } from "@/components/three/TiltCard";
 import { IMAGE_SIZES } from "@/utils/image";
 import { cn } from "@/utils/cn";
@@ -96,83 +97,85 @@ export function GalleryGrid() {
         ))}
       </StaggerGroup>
 
-      <AnimatePresence>
-        {active !== null ? (
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-label={`Photo ${active + 1} of ${total}`}
-            className="fixed inset-0 z-100 flex items-center justify-center bg-ink-950/95 p-4 backdrop-blur-xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActive(null)}
-          >
-            <div className="relative h-[78vh] w-full max-w-6xl [perspective:1600px]">
-              <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                <motion.div
-                  key={active}
-                  custom={direction}
-                  variants={{
-                    enter: (d: number) => ({ opacity: 0, rotateY: d * 35, x: d * 120, scale: 0.9 }),
-                    center: { opacity: 1, rotateY: 0, x: 0, scale: 1 },
-                    exit: (d: number) => ({ opacity: 0, rotateY: d * -35, x: d * -120, scale: 0.9 }),
-                  }}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute inset-0"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <Image
-                    src={GALLERY_IMAGES[active] ?? ""}
-                    alt={altFor(active)}
-                    fill
-                    sizes="100vw"
-                    className="rounded-2xl object-contain"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <button
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-                step(-1);
-              }}
-              aria-label="Previous photo"
-              className="glass absolute top-1/2 left-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-snow transition-colors hover:bg-brand hover:text-snow sm:left-6"
-            >
-              <LuChevronLeft className="size-5" aria-hidden />
-            </button>
-            <button
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-                step(1);
-              }}
-              aria-label="Next photo"
-              className="glass absolute top-1/2 right-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-snow transition-colors hover:bg-brand hover:text-snow sm:right-6"
-            >
-              <LuChevronRight className="size-5" aria-hidden />
-            </button>
-            <button
-              type="button"
+      <SitePortal>
+        <AnimatePresence>
+          {active !== null ? (
+            <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={`Photo ${active + 1} of ${total}`}
+              className="fixed inset-0 z-100 flex items-center justify-center bg-ink-950/95 p-4 backdrop-blur-xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setActive(null)}
-              aria-label="Close gallery"
-              className="glass absolute top-4 right-4 grid size-12 place-items-center rounded-full text-snow transition-colors hover:bg-brand hover:text-snow sm:top-6 sm:right-6"
             >
-              <LuX className="size-5" aria-hidden />
-            </button>
-            <p className="glass absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full px-5 py-2 font-display text-[1.25rem] tracking-[0.1em] text-white">
-              {String(active + 1).padStart(2, "0")}
-              <span className="text-muted"> / {total}</span>
-            </p>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+              <div className="relative h-[78vh] w-full max-w-6xl [perspective:1600px]">
+                <AnimatePresence initial={false} custom={direction} mode="popLayout">
+                  <motion.div
+                    key={active}
+                    custom={direction}
+                    variants={{
+                      enter: (d: number) => ({ opacity: 0, rotateY: d * 35, x: d * 120, scale: 0.9 }),
+                      center: { opacity: 1, rotateY: 0, x: 0, scale: 1 },
+                      exit: (d: number) => ({ opacity: 0, rotateY: d * -35, x: d * -120, scale: 0.9 }),
+                    }}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <Image
+                      src={GALLERY_IMAGES[active] ?? ""}
+                      alt={altFor(active)}
+                      fill
+                      sizes="100vw"
+                      className="rounded-2xl object-contain"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(-1);
+                }}
+                aria-label="Previous photo"
+                className="glass absolute top-1/2 left-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-white transition-colors hover:bg-brand hover:text-snow sm:left-6"
+              >
+                <LuChevronLeft className="size-5" aria-hidden />
+              </button>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  step(1);
+                }}
+                aria-label="Next photo"
+                className="glass absolute top-1/2 right-3 grid size-12 -translate-y-1/2 place-items-center rounded-full text-white transition-colors hover:bg-brand hover:text-snow sm:right-6"
+              >
+                <LuChevronRight className="size-5" aria-hidden />
+              </button>
+              <button
+                type="button"
+                onClick={() => setActive(null)}
+                aria-label="Close gallery"
+                className="glass absolute top-4 right-4 grid size-12 place-items-center rounded-full text-white transition-colors hover:bg-brand hover:text-snow sm:top-6 sm:right-6"
+              >
+                <LuX className="size-5" aria-hidden />
+              </button>
+              <p className="glass absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full px-5 py-2 font-display text-[1.25rem] tracking-[0.1em] text-white">
+                {String(active + 1).padStart(2, "0")}
+                <span className="text-muted"> / {total}</span>
+              </p>
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </SitePortal>
     </>
   );
 }

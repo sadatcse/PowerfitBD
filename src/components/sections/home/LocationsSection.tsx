@@ -92,7 +92,7 @@ export function LocationsSection() {
                         href={branch.mapUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white/5 px-4 py-2.5 text-body-xs font-bold tracking-wider text-snow uppercase ring-1 ring-white/10 transition-all hover:bg-brand hover:text-snow hover:ring-brand-bright"
+                        className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-brand/10 px-4 py-2.5 text-body-xs font-bold tracking-wider text-brand uppercase ring-1 ring-brand/25 transition-all hover:bg-brand hover:text-snow hover:ring-brand-bright"
                       >
                         <LuNavigation className="size-3.5" aria-hidden />
                         Directions
